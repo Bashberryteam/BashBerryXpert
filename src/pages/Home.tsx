@@ -1,0 +1,284 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, CheckCircle2, Shield, BarChart3, Zap, Target, Star } from "lucide-react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+const badges = ["Full-Stack Growth", "Multi-Channel Marketing", "Revenue-First Approach"];
+
+const whyUs = [
+  {
+    icon: BarChart3,
+    title: "Data-Driven Strategies",
+    description: "Every decision backed by real analytics, A/B testing, and performance metrics — never guesswork.",
+  },
+  {
+    icon: Shield,
+    title: "5-Pillar Framework",
+    description: "Our proprietary system covers Store Design, SEO, Google/Meta Ads, CRO, and Retention for complete growth.",
+  },
+  {
+    icon: Zap,
+    title: "Google Merchant 'Locked Door' Solutions",
+    description: "90% of stores fail without Google Merchant Center approval. We specialize in unlocking this critical channel.",
+  },
+  {
+    icon: Target,
+    title: "Revenue-First Approach",
+    description: "We focus on profitable growth, not vanity metrics. Every dollar spent must generate measurable ROI.",
+  },
+];
+
+const brands = [
+  { name: "Glamira", url: "https://glamira.africa" },
+  { name: "Jiifto", url: "https://jiifto.com" },
+  { name: "Zevrik", url: "https://zevrik.com" },
+  { name: "Johareez", url: "https://johareez.com" },
+  { name: "Domino Style", url: "#" },
+  { name: "Gigi Boutique", url: "#" },
+  { name: "Spirit Fashion", url: "#" },
+  { name: "Boutique Chic", url: "#" },
+  { name: "Lesley Blackburn Art", url: "#" },
+];
+
+const testimonials = [
+  { quote: "Bash Berry Xpert completely transformed our technical SEO infrastructure. Within 4 months, our organic revenue doubled.", name: "Glamira", role: "E-commerce Brand" },
+  { quote: "The migration was flawless. Zero downtime, perfectly preserved URLs, and a stunning new design that bumped our conversion rate by 30%.", name: "Jiifto", role: "Online Retailer" },
+  { quote: "Their grasp on the Google/Meta ecosystem is unparalleled. They look at our entire unit economics to scale profitably.", name: "Zevrik", role: "Fashion Brand" },
+  { quote: "Outstanding Shopify expertise. Our store went from zero to $10K+ monthly in under 6 months.", name: "Johareez", role: "Jewelry Store" },
+  { quote: "Professional, data-driven, and results-focused. The best agency decision we've made.", name: "Domino Style", role: "Apparel Brand" },
+  { quote: "They unlocked Google Merchant Center for us when others couldn't. Game-changing.", name: "Gigi Boutique", role: "Fashion Boutique" },
+  { quote: "Our ROAS consistently exceeds 8x thanks to their Meta ads strategy. Truly remarkable results.", name: "Spirit Fashion", role: "Streetwear Brand" },
+  { quote: "From branding to SEO to paid ads, they handle everything seamlessly. A true growth partner.", name: "Boutique Chic", role: "Luxury Retailer" },
+  { quote: "Incredible attention to detail in web design and a deep understanding of the art market niche.", name: "Lesley Blackburn Art", role: "Art Gallery" },
+];
+
+const Home = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+
+      {/* Hero */}
+      <section className="relative min-h-screen bg-hero-gradient pt-16">
+        <div className="container mx-auto flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground"
+          >
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+            All-in-One E-commerce Growth Partner
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mb-6 max-w-4xl text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-7xl"
+          >
+            The Complete Shopify{" "}
+            <span className="text-gradient">Sales Growth Engine.</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground"
+          >
+            We don't just build stores; we scale them. From technical design to
+            Google/Meta Ecosystem mastery, we turn browsers into loyal buyers.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-8 flex flex-col items-center gap-4 sm:flex-row"
+          >
+            <Link
+              to="/services"
+              className="bg-gradient-primary flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon"
+            >
+              View Our Growth Framework <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              to="/portfolio"
+              className="flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40"
+            >
+              View Portfolio
+            </Link>
+          </motion.div>
+
+          <a
+            href="mailto:bashberryexpert@gmail.com"
+            className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            bashberryexpert@gmail.com
+          </a>
+
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            {badges.map((badge) => (
+              <div key={badge} className="flex items-center gap-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="h-4 w-4 text-primary" />
+                {badge}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted Brands Marquee */}
+      <section className="border-y border-border bg-background py-12">
+        <div className="container mx-auto px-6">
+          <p className="mb-8 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Trusted By Ambitious Brands
+          </p>
+        </div>
+        <div className="relative overflow-hidden">
+          <div className="animate-marquee flex w-max gap-16 whitespace-nowrap">
+            {[...brands, ...brands].map((brand, i) => (
+              <a
+                key={i}
+                href={brand.url !== "#" ? brand.url : undefined}
+                target={brand.url !== "#" ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="text-xl font-semibold text-muted-foreground/50 transition-colors hover:text-primary cursor-pointer"
+              >
+                {brand.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-section-alt py-24">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Why Choose Us
+            </p>
+            <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
+              Your Unfair Competitive Advantage
+            </h2>
+            <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">
+              Most agencies guess. We engineer growth with a proven framework, proprietary strategies, and deep platform expertise.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {whyUs.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="card-hover rounded-xl border border-border bg-card p-8"
+              >
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
+                  <item.icon className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="mb-3 text-lg font-semibold text-foreground">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Slideshow */}
+      <TestimonialSlideshow testimonials={testimonials} />
+
+      <Footer />
+    </div>
+  );
+};
+
+type Testimonial = { quote: string; name: string; role: string };
+
+const TestimonialSlideshow = ({ testimonials }: { testimonials: Testimonial[] }) => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  const t = testimonials[current];
+
+  return (
+    <section className="bg-background py-24">
+      <div className="container mx-auto px-6">
+        <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+          Client Testimonials
+        </p>
+        <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">
+          What Our Clients Say
+        </h2>
+
+        <div className="mx-auto max-w-2xl text-center">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.5 }}
+            className="rounded-xl border border-border bg-card p-10"
+          >
+            <div className="mb-6 flex justify-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+              ))}
+            </div>
+            <p className="mb-8 text-lg leading-relaxed text-muted-foreground italic">
+              "{t.quote}"
+            </p>
+            <div className="flex items-center justify-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-primary-foreground">
+                {t.name[0]}
+              </div>
+              <div className="text-left">
+                <p className="text-sm font-semibold text-foreground">{t.name}</p>
+                <p className="text-xs text-muted-foreground">{t.role}</p>
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="mt-8 flex justify-center gap-2">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`h-2 rounded-full transition-all ${
+                  i === current ? "w-8 bg-primary" : "w-2 bg-muted"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 text-center">
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40"
+          >
+            Leave a Review <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Home;
