@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ArrowRight } from "lucide-react";
-import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
@@ -17,10 +16,15 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <Link to="/" className="flex items-center gap-2">
-          <img src={logo} alt="Bash Berry Xpert" className="h-10 w-auto invert" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary text-sm font-bold text-primary-foreground">
+            B
+          </div>
+          <span className="text-lg font-semibold text-foreground">
+            Bash Berry <span className="text-primary">Xpert</span>
+          </span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -30,7 +34,7 @@ const Navbar = () => {
               to={link.path}
               className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
                 location.pathname === link.path
-                  ? "text-foreground bg-muted"
+                  ? "text-primary bg-primary/10"
                   : "text-muted-foreground hover:text-foreground hover:bg-secondary"
               }`}
             >
@@ -41,7 +45,7 @@ const Navbar = () => {
 
         <Link
           to="/contact"
-          className="hidden items-center gap-2 rounded-full bg-gradient-silver px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow md:flex"
+          className="hidden items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon md:flex"
         >
           Get Started <ArrowRight className="h-4 w-4" />
         </Link>
@@ -62,7 +66,7 @@ const Navbar = () => {
               to={link.path}
               className={`block py-3 text-sm font-medium transition-colors ${
                 location.pathname === link.path
-                  ? "text-foreground"
+                  ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
               onClick={() => setMobileOpen(false)}
@@ -72,7 +76,7 @@ const Navbar = () => {
           ))}
           <Link
             to="/contact"
-            className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-silver px-5 py-2.5 text-sm font-semibold text-primary-foreground"
+            className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             onClick={() => setMobileOpen(false)}
           >
             Get Started <ArrowRight className="h-4 w-4" />
