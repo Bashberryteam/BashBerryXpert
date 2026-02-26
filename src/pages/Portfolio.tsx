@@ -33,8 +33,6 @@ const nicheBrands = [
   { name: "Kenneth Rebels", url: "https://kennethrebels.com", niche: "Lifestyle Brand", result: "+195% Revenue" },
 ];
 
-const allBrands = [...fashionBrands, ...jewelryBrands, ...nicheBrands];
-
 const salesProofs = [
   { id: 1, title: "Fashion Portfolio ROI", metric: "+320% Revenue", category: "Fashion" },
   { id: 2, title: "Jewelry Campaigns ROAS", metric: "9.2x ROAS", category: "Jewelry" },
@@ -45,13 +43,13 @@ const salesProofs = [
 ];
 
 const CategoryIcon = ({ category }: { category: string }) => {
-  if (category === "Fashion") return <ShoppingCart className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  if (category === "Jewelry") return <Gem className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  if (category === "SEO") return <TrendingUp className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  return <DollarSign className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
+  if (category === "Fashion") return <ShoppingCart className="mx-auto mb-2 h-10 w-10 text-muted-foreground/30" />;
+  if (category === "Jewelry") return <Gem className="mx-auto mb-2 h-10 w-10 text-muted-foreground/30" />;
+  if (category === "SEO") return <TrendingUp className="mx-auto mb-2 h-10 w-10 text-muted-foreground/30" />;
+  return <DollarSign className="mx-auto mb-2 h-10 w-10 text-muted-foreground/30" />;
 };
 
-const BrandCard = ({ brand, i }: { brand: typeof allBrands[0]; i: number }) => (
+const BrandCard = ({ brand, i }: { brand: { name: string; url: string; niche: string; result: string }; i: number }) => (
   <motion.a
     href={brand.url}
     target="_blank"
@@ -67,12 +65,12 @@ const BrandCard = ({ brand, i }: { brand: typeof allBrands[0]; i: number }) => (
     </div>
     <div className="flex items-center justify-between mb-2">
       <h3 className="text-base font-semibold text-foreground">{brand.name}</h3>
-      <ExternalLink className="h-4 w-4 text-primary opacity-0 transition-opacity group-hover:opacity-100" />
+      <ExternalLink className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
     </div>
     <p className="text-xs text-muted-foreground mb-3">{brand.niche}</p>
-    <div className="flex items-center gap-2 rounded-lg bg-primary/10 px-3 py-2">
-      <TrendingUp className="h-4 w-4 text-primary" />
-      <span className="text-sm font-semibold text-primary">{brand.result}</span>
+    <div className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2">
+      <TrendingUp className="h-4 w-4 text-foreground" />
+      <span className="text-sm font-semibold text-foreground">{brand.result}</span>
     </div>
   </motion.a>
 );
@@ -82,9 +80,9 @@ const Portfolio = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="bg-hero-gradient pt-32 pb-20">
-        <div className="container mx-auto px-6 text-center">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+      <section className="noise-bg bg-hero-gradient pt-32 pb-20">
+        <div className="container relative z-10 mx-auto px-6 text-center">
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
             Our Work
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
@@ -100,9 +98,9 @@ const Portfolio = () => {
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-3 mb-10">
-            <ShoppingCart className="h-6 w-6 text-primary" />
+            <ShoppingCart className="h-6 w-6 text-foreground" />
             <h2 className="text-2xl font-bold text-foreground">Fashion & Apparel</h2>
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{fashionBrands.length} Brands</span>
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-muted-foreground">{fashionBrands.length} Brands</span>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {fashionBrands.map((brand, i) => <BrandCard key={brand.name} brand={brand} i={i} />)}
@@ -111,12 +109,12 @@ const Portfolio = () => {
       </section>
 
       {/* Jewelry & Luxury */}
-      <section className="bg-section-alt py-24">
-        <div className="container mx-auto px-6">
+      <section className="noise-bg bg-section-alt py-24">
+        <div className="container relative z-10 mx-auto px-6">
           <div className="flex items-center gap-3 mb-10">
-            <Gem className="h-6 w-6 text-primary" />
+            <Gem className="h-6 w-6 text-foreground" />
             <h2 className="text-2xl font-bold text-foreground">Jewelry & Luxury</h2>
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{jewelryBrands.length} Brands</span>
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-muted-foreground">{jewelryBrands.length} Brands</span>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {jewelryBrands.map((brand, i) => <BrandCard key={brand.name} brand={brand} i={i} />)}
@@ -128,9 +126,9 @@ const Portfolio = () => {
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-3 mb-10">
-            <Palette className="h-6 w-6 text-primary" />
+            <Palette className="h-6 w-6 text-foreground" />
             <h2 className="text-2xl font-bold text-foreground">Niche & Art</h2>
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">{nicheBrands.length} Brands</span>
+            <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-muted-foreground">{nicheBrands.length} Brands</span>
           </div>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {nicheBrands.map((brand, i) => <BrandCard key={brand.name} brand={brand} i={i} />)}
@@ -139,9 +137,9 @@ const Portfolio = () => {
       </section>
 
       {/* Sales Proof */}
-      <section className="bg-section-alt py-24">
-        <div className="container mx-auto px-6">
-          <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Proof of Performance</p>
+      <section className="noise-bg bg-section-alt py-24">
+        <div className="container relative z-10 mx-auto px-6">
+          <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Proof of Performance</p>
           <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Sales Proof & ROI Screenshots</h2>
           <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">
             Real dashboards, real numbers. These metrics showcase actual client performance data across our 20+ brand portfolio.
@@ -178,7 +176,7 @@ const Portfolio = () => {
         <div className="container mx-auto px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground">Want Results Like These?</h2>
           <p className="mx-auto mb-8 max-w-xl text-muted-foreground">Let's discuss how we can replicate this success for your brand.</p>
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
+          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-silver px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-glow">
             Get Started <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

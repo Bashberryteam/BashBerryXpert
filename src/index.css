@@ -6,47 +6,47 @@
 
 @layer base {
   :root {
-    --background: 220 20% 4%;
-    --foreground: 0 0% 95%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 90%;
 
-    --card: 220 18% 7%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 90%;
 
-    --popover: 220 18% 7%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 90%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 220 20% 4%;
+    --primary: 0 0% 78%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 220 16% 12%;
-    --secondary-foreground: 0 0% 95%;
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 90%;
 
-    --muted: 220 14% 14%;
-    --muted-foreground: 220 10% 50%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 50%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 220 20% 4%;
+    --accent: 0 0% 78%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
-    --border: 220 14% 14%;
-    --input: 220 14% 14%;
-    --ring: 199 89% 48%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --ring: 0 0% 60%;
 
     --radius: 0.75rem;
 
-    --neon: 199 89% 48%;
-    --neon-glow: 185 80% 55%;
+    --silver: 0 0% 78%;
+    --silver-bright: 0 0% 90%;
 
-    --sidebar-background: 220 20% 4%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 199 89% 48%;
-    --sidebar-primary-foreground: 220 20% 4%;
-    --sidebar-accent: 220 16% 12%;
-    --sidebar-accent-foreground: 0 0% 95%;
-    --sidebar-border: 220 14% 14%;
-    --sidebar-ring: 199 89% 48%;
+    --sidebar-background: 0 0% 0%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 0 0% 78%;
+    --sidebar-primary-foreground: 0 0% 0%;
+    --sidebar-accent: 0 0% 9%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 14%;
+    --sidebar-ring: 0 0% 60%;
   }
 }
 
@@ -68,45 +68,62 @@
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(199 89% 48%), hsl(185 80% 55%));
+    background-image: linear-gradient(135deg, hsl(0 0% 90%), hsl(0 0% 55%));
   }
 
   .bg-gradient-primary {
-    background: linear-gradient(135deg, hsl(199 89% 48%), hsl(185 80% 55%));
+    background: linear-gradient(135deg, hsl(0 0% 35%), hsl(0 0% 22%));
+  }
+
+  .bg-gradient-silver {
+    background: linear-gradient(135deg, hsl(0 0% 75%), hsl(0 0% 55%));
   }
 
   .bg-hero-gradient {
-    background: radial-gradient(ellipse at 50% 0%, hsl(199 89% 48% / 0.12) 0%, transparent 60%),
-                linear-gradient(180deg, hsl(220 20% 4%) 0%, hsl(220 20% 2%) 100%);
+    background: radial-gradient(ellipse at 50% 0%, hsl(0 0% 10% / 0.5) 0%, transparent 60%),
+                linear-gradient(180deg, hsl(0 0% 0%) 0%, hsl(0 0% 2%) 100%);
   }
 
   .bg-section-alt {
-    background: hsl(220 18% 3%);
+    background: hsl(0 0% 4%);
   }
 
   .border-glow {
-    border-color: hsl(199 89% 48% / 0.25);
+    border-color: hsl(0 0% 30% / 0.4);
   }
 
   .shadow-glow {
-    box-shadow: 0 0 30px hsl(199 89% 48% / 0.15);
+    box-shadow: 0 0 30px hsl(0 0% 50% / 0.08);
   }
 
   .shadow-neon {
-    box-shadow: 0 0 20px hsl(199 89% 48% / 0.3), 0 0 60px hsl(199 89% 48% / 0.1);
+    box-shadow: 0 0 20px hsl(0 0% 60% / 0.15), 0 0 60px hsl(0 0% 50% / 0.05);
   }
 
   .card-hover {
     @apply transition-all duration-300;
   }
   .card-hover:hover {
-    border-color: hsl(199 89% 48% / 0.4);
-    box-shadow: 0 0 40px hsl(199 89% 48% / 0.1);
+    border-color: hsl(0 0% 30% / 0.5);
+    box-shadow: 0 0 40px hsl(0 0% 50% / 0.06);
     transform: translateY(-2px);
   }
 
   .animate-marquee {
     animation: marquee 30s linear infinite;
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
   }
 }
 

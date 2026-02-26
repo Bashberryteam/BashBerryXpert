@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, MapPin } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const socialLinks = [
   {
@@ -55,22 +56,20 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link to="/" className="mb-4 flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary text-sm font-bold text-primary-foreground">B</div>
-              <span className="text-lg font-semibold text-foreground">Bash Berry <span className="text-primary">Xpert</span></span>
+            <Link to="/" className="mb-4 inline-block">
+              <img src={logo} alt="Bash Berry Xpert" className="h-12 w-auto invert" />
             </Link>
             <p className="mb-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
               Full-stack e-commerce growth agency specializing in Shopify, Google & Meta Ecosystems, and data-driven revenue scaling.
             </p>
-            <a href="mailto:bashberryexpert@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-foreground mb-4">
+            <a href="mailto:bashberryexpert@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition-colors hover:text-muted-foreground mb-4">
               <Mail className="h-4 w-4" /> bashberryexpert@gmail.com
             </a>
             <div className="flex items-start gap-2 text-sm text-muted-foreground mb-6">
-              <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
+              <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-foreground" />
               <span>Proudly based in Alagbado, Ilorin, Nigeria — serving global brands.</span>
             </div>
 
-            {/* Social Icons */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -78,7 +77,7 @@ const Footer = () => {
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-all hover:border-primary/40 hover:text-primary"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-all hover:border-foreground/30 hover:text-foreground"
                   aria-label={social.label}
                 >
                   {social.icon}
