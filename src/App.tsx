@@ -10,6 +10,7 @@ import Pricing from "./pages/Pricing";
 import Experience from "./pages/Experience";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import FloatingWidgets from "./components/FloatingWidgets";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <FloatingWidgets />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
