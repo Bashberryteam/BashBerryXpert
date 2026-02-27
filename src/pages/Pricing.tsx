@@ -50,7 +50,7 @@ const plans = [
       "Advanced analytics & attribution",
       "All social media platforms",
       "Weekly strategy calls",
-      "Dedicated account manager",
+      "Dedicated support channel",
       "Custom integrations",
     ],
     popular: false,
@@ -64,18 +64,8 @@ const Pricing = () => {
 
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
-          >
-            Pricing
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl"
-          >
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Pricing</motion.p>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
             Transparent <span className="text-gradient">Growth Plans</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
@@ -94,11 +84,7 @@ const Pricing = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className={`relative rounded-2xl border p-8 ${
-                  plan.popular
-                    ? "border-primary bg-card shadow-neon"
-                    : "border-border bg-card"
-                }`}
+                className={`relative rounded-2xl border p-8 ${plan.popular ? "border-primary bg-card shadow-neon" : "border-border bg-card"}`}
               >
                 {plan.popular && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-primary px-4 py-1 text-xs font-semibold text-primary-foreground flex items-center gap-1">
@@ -114,18 +100,13 @@ const Pricing = () => {
                 <ul className="mb-8 space-y-3">
                   {plan.features.map((f) => (
                     <li key={f} className="flex items-start gap-3 text-sm text-muted-foreground">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                      {f}
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {f}
                     </li>
                   ))}
                 </ul>
                 <Link
                   to="/contact"
-                  className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all ${
-                    plan.popular
-                      ? "bg-gradient-primary text-primary-foreground hover:shadow-neon"
-                      : "border border-border bg-secondary text-foreground hover:border-primary/40"
-                  }`}
+                  className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all ${plan.popular ? "bg-gradient-primary text-primary-foreground hover:shadow-neon" : "border border-border bg-secondary text-foreground hover:border-primary/40"}`}
                 >
                   Get Started <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -136,9 +117,7 @@ const Pricing = () => {
           <div className="mt-16 text-center">
             <p className="text-muted-foreground">
               Need a custom solution?{" "}
-              <Link to="/contact" className="font-medium text-primary hover:text-foreground transition-colors">
-                Contact us
-              </Link>{" "}
+              <Link to="/contact" className="font-medium text-primary hover:text-foreground transition-colors">Contact me</Link>{" "}
               for a tailored growth plan.
             </p>
           </div>

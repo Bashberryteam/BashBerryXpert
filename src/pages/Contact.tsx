@@ -64,7 +64,7 @@ const Contact = () => {
             Ready to <span className="text-gradient">Accelerate Growth?</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Partner with an expert team that understands the full e-commerce ecosystem. Let's map out your revenue growth plan.
+            Partner with an elite consultant who understands the full e-commerce ecosystem. Let me map out your revenue growth plan.
           </p>
         </div>
       </section>
@@ -76,7 +76,7 @@ const Contact = () => {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <h2 className="mb-6 text-2xl font-bold text-foreground">Get In Touch</h2>
               <p className="mb-8 text-muted-foreground leading-relaxed">
-                Whether you're launching a new store or scaling an existing one, we'll help you identify opportunities and build a comprehensive growth strategy.
+                Whether you're launching a new store or scaling an existing one, I'll help you identify opportunities and build a comprehensive growth strategy.
               </p>
 
               <a href="mailto:bashberryexpert@gmail.com" className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40 mb-8">
@@ -84,7 +84,7 @@ const Contact = () => {
                   <Mail className="h-5 w-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Email us</p>
+                  <p className="text-xs text-muted-foreground">Email me</p>
                   <p className="text-sm font-semibold text-foreground">bashberryexpert@gmail.com</p>
                 </div>
               </a>
@@ -94,7 +94,7 @@ const Contact = () => {
                 <div className="space-y-4">
                   {[
                     { num: "1", title: "Initial Consultation", desc: "Discuss your brand's goals and current challenges." },
-                    { num: "2", title: "Growth Roadmap", desc: "We design a custom strategy tailored to your needs." },
+                    { num: "2", title: "Growth Roadmap", desc: "I design a custom strategy tailored to your needs." },
                     { num: "3", title: "Execute & Scale", desc: "Implementation with continuous optimization and reporting." },
                   ].map((step) => (
                     <div key={step.num} className="flex gap-4">
@@ -116,10 +116,10 @@ const Contact = () => {
             {/* Contact Form */}
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-card p-8">
-                <h3 className="mb-6 text-lg font-semibold text-foreground">Apply for Partnership</h3>
+                <h3 className="mb-6 text-lg font-semibold text-foreground">Start Your Growth Journey</h3>
                 {submitted && (
                   <div className="mb-4 rounded-lg bg-primary/10 p-3 text-sm text-primary font-medium">
-                    Redirecting to WhatsApp — we'll respond within 24 hours!
+                    Redirecting to WhatsApp — I'll respond within 24 hours!
                   </div>
                 )}
                 <div className="space-y-4">
