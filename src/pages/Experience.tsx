@@ -4,34 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 const timeline = [
-  {
-    icon: Briefcase,
-    year: "2022 – Present",
-    title: "Founder & Lead Strategist",
-    company: "Bash Berry Xpert",
-    description: "Leading full-stack e-commerce growth for Shopify brands. Specializing in Google/Meta ecosystems, technical SEO, and conversion optimization.",
-  },
-  {
-    icon: Briefcase,
-    year: "2020 – 2022",
-    title: "Senior E-commerce Consultant",
-    company: "Freelance",
-    description: "Managed multi-channel marketing campaigns for 50+ Shopify stores. Achieved average ROAS of 8.5x across client portfolio.",
-  },
-  {
-    icon: GraduationCap,
-    year: "2018 – 2020",
-    title: "Digital Marketing Specialist",
-    company: "Agency Experience",
-    description: "Built expertise in Google Ads, Facebook Ads, and SEO. Led campaigns generating $2M+ in tracked revenue.",
-  },
-  {
-    icon: Award,
-    year: "2017 – 2018",
-    title: "Web Developer & Designer",
-    company: "Freelance",
-    description: "Started building custom websites and Shopify stores. Developed deep understanding of UX and conversion principles.",
-  },
+  { icon: Briefcase, year: "2022 – Present", title: "Founder & Lead Strategist", company: "Bash Berry Xpert", description: "Leading full-stack e-commerce growth for Shopify brands. Specializing in Google/Meta ecosystems, technical SEO, and conversion optimization." },
+  { icon: Briefcase, year: "2020 – 2022", title: "Senior E-commerce Consultant", company: "Freelance", description: "Managed multi-channel marketing campaigns for 50+ Shopify stores. Achieved average ROAS of 8.5x across my client portfolio." },
+  { icon: GraduationCap, year: "2018 – 2020", title: "Digital Marketing Specialist", company: "Agency Experience", description: "Built expertise in Google Ads, Facebook Ads, and SEO. Led campaigns generating $2M+ in tracked revenue." },
+  { icon: Award, year: "2017 – 2018", title: "Web Developer & Designer", company: "Freelance", description: "Started building custom websites and Shopify stores. Developed deep understanding of UX and conversion principles." },
 ];
 
 const techStack = [
@@ -59,19 +35,11 @@ const Experience = () => {
 
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
-          >
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
             Professional Background
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl"
-          >
-            Skills & <span className="text-gradient">Experience</span>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
+            My Skills & <span className="text-gradient">Experience</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             Years of hands-on experience scaling e-commerce brands with data-driven strategies and cutting-edge tools.
@@ -82,17 +50,10 @@ const Experience = () => {
       {/* Timeline */}
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
-          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">Professional Journey</h2>
+          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">My Professional Journey</h2>
           <div className="mx-auto max-w-3xl space-y-8">
             {timeline.map((item, i) => (
-              <motion.div
-                key={item.year}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="flex gap-6"
-              >
+              <motion.div key={item.year} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }} className="flex gap-6">
                 <div className="flex flex-col items-center">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
                     <item.icon className="h-5 w-5 text-primary" />
@@ -114,23 +75,14 @@ const Experience = () => {
       {/* Tech Stack */}
       <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
-          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">Tech Stack & Tools</h2>
+          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">My Tech Stack & Tools</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {techStack.map((cat, i) => (
-              <motion.div
-                key={cat.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="rounded-xl border border-border bg-card p-6"
-              >
+              <motion.div key={cat.category} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.08 }} className="rounded-xl border border-border bg-card p-6">
                 <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">{cat.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {cat.tools.map((tool) => (
-                    <span key={tool} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-foreground">
-                      {tool}
-                    </span>
+                    <span key={tool} className="rounded-full bg-secondary px-3 py-1.5 text-xs font-medium text-foreground">{tool}</span>
                   ))}
                 </div>
               </motion.div>
@@ -142,17 +94,10 @@ const Experience = () => {
       {/* Certifications */}
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
-          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">Certifications</h2>
+          <h2 className="mb-14 text-center text-3xl font-bold text-foreground">My Certifications</h2>
           <div className="mx-auto max-w-2xl grid gap-4 sm:grid-cols-2">
             {certifications.map((cert, i) => (
-              <motion.div
-                key={cert}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: i * 0.05 }}
-                className="flex items-center gap-3 rounded-lg border border-border bg-card p-4"
-              >
+              <motion.div key={cert} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3, delay: i * 0.05 }} className="flex items-center gap-3 rounded-lg border border-border bg-card p-4">
                 <CheckCircle2 className="h-5 w-5 shrink-0 text-primary" />
                 <span className="text-sm font-medium text-foreground">{cert}</span>
               </motion.div>

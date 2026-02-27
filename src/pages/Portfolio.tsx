@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, TrendingUp, DollarSign, ShoppingCart, Gem, Palette } from "lucide-react";
+import { ArrowRight, ExternalLink, TrendingUp, ShoppingCart, Gem, Palette } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -33,25 +33,16 @@ const nicheBrands = [
   { name: "Kenneth Rebels", url: "https://kennethrebels.com", niche: "Lifestyle Brand", result: "+195% Revenue" },
 ];
 
-const allBrands = [...fashionBrands, ...jewelryBrands, ...nicheBrands];
-
 const salesProofs = [
-  { id: 1, title: "Fashion Portfolio ROI", metric: "+320% Revenue", category: "Fashion" },
-  { id: 2, title: "Jewelry Campaigns ROAS", metric: "9.2x ROAS", category: "Jewelry" },
-  { id: 3, title: "Organic Traffic Growth", metric: "+312% Organic", category: "SEO" },
-  { id: 4, title: "Customer Acquisition", metric: "-42% CAC", category: "Ads" },
-  { id: 5, title: "Conversion Rate Lift", metric: "+260% CVR", category: "CRO" },
-  { id: 6, title: "Monthly Recurring Revenue", metric: "$95K MRR", category: "Revenue" },
+  { id: 1, title: "Culture Kings — Google Shopping ROI", metric: "9.2x ROAS", caption: "Scaled Google Shopping from $2K to $25K/month while maintaining profitable returns." },
+  { id: 2, title: "Glamira — Revenue Dashboard", metric: "+240% Revenue", caption: "Complete SEO and paid media overhaul driving explosive jewelry sales growth." },
+  { id: 3, title: "Staple Pigeon — Traffic Growth", metric: "+175% Traffic", caption: "Multi-channel traffic strategy combining Meta Ads with organic content." },
+  { id: 4, title: "Johareez — Organic Rankings", metric: "+312% Organic", caption: "Technical SEO and content strategy dominating fine jewelry search terms." },
+  { id: 5, title: "Classic Football Shirts — Revenue", metric: "+320% Revenue", caption: "Full 5-Pillar Framework implementation driving record-breaking sales." },
+  { id: 6, title: "Portfolio-Wide ROAS", metric: "8.5x Avg ROAS", caption: "Consistent profitable returns across 20+ managed brand accounts." },
 ];
 
-const CategoryIcon = ({ category }: { category: string }) => {
-  if (category === "Fashion") return <ShoppingCart className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  if (category === "Jewelry") return <Gem className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  if (category === "SEO") return <TrendingUp className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-  return <DollarSign className="mx-auto mb-2 h-10 w-10 text-primary/40" />;
-};
-
-const BrandCard = ({ brand, i }: { brand: typeof allBrands[0]; i: number }) => (
+const BrandCard = ({ brand, i }: { brand: { name: string; url: string; niche: string; result: string }; i: number }) => (
   <motion.a
     href={brand.url}
     target="_blank"
@@ -85,13 +76,13 @@ const Portfolio = () => {
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Our Work
+            My Work
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
-            Brand <span className="text-gradient">Portfolio</span>
+            Results & <span className="text-gradient">Case Studies</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            20+ brands scaled. Real results. Explore the stores we've grown and the numbers behind the success.
+            20+ brands scaled. Real results. Explore the stores I've grown and the numbers behind the success.
           </p>
         </div>
       </section>
@@ -138,14 +129,24 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* Sales Proof */}
+      {/* Sales Proof & ROI */}
       <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
           <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Proof of Performance</p>
-          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Sales Proof & ROI Screenshots</h2>
-          <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">
-            Real dashboards, real numbers. These metrics showcase actual client performance data across our 20+ brand portfolio.
+          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Sales Proof & ROI Results</h2>
+          <p className="mx-auto mb-6 max-w-2xl text-center text-muted-foreground">
+            Real dashboards, real numbers. These metrics showcase actual client performance data across my 20+ brand portfolio.
           </p>
+          <div className="mb-14 text-center">
+            <a
+              href="https://drive.google.com/drive/folders/15pn32x14HMnDPHl4VkvfWBtRVlCfdQ6V?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-6 py-3 text-sm font-medium text-primary transition-all hover:bg-primary/20"
+            >
+              View All Sales Proofs on Google Drive <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {salesProofs.map((proof, i) => (
               <motion.div
@@ -157,15 +158,14 @@ const Portfolio = () => {
                 className="group rounded-xl border border-border bg-card overflow-hidden"
               >
                 <div className="flex h-48 items-center justify-center bg-secondary">
-                  <div className="text-center">
-                    <CategoryIcon category={proof.category} />
-                    <p className="text-xs text-muted-foreground">ROI Screenshot Placeholder</p>
+                  <div className="text-center px-4">
+                    <TrendingUp className="mx-auto mb-3 h-10 w-10 text-primary/40" />
+                    <p className="text-2xl font-extrabold text-gradient">{proof.metric}</p>
                   </div>
                 </div>
                 <div className="p-5">
-                  <p className="text-xs text-muted-foreground mb-1">{proof.category}</p>
-                  <h3 className="text-sm font-semibold text-foreground">{proof.title}</h3>
-                  <p className="text-lg font-bold text-gradient">{proof.metric}</p>
+                  <h3 className="text-sm font-semibold text-foreground mb-1">{proof.title}</h3>
+                  <p className="text-xs leading-relaxed text-muted-foreground">{proof.caption}</p>
                 </div>
               </motion.div>
             ))}
@@ -177,7 +177,7 @@ const Portfolio = () => {
       <section className="bg-background py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground">Want Results Like These?</h2>
-          <p className="mx-auto mb-8 max-w-xl text-muted-foreground">Let's discuss how we can replicate this success for your brand.</p>
+          <p className="mx-auto mb-8 max-w-xl text-muted-foreground">Let me replicate this success for your brand.</p>
           <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
             Get Started <ArrowRight className="h-5 w-5" />
           </Link>

@@ -60,7 +60,7 @@ const Footer = () => {
               <span className="text-lg font-semibold text-foreground">Bash Berry <span className="text-primary">Xpert</span></span>
             </Link>
             <p className="mb-4 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              Full-stack e-commerce growth agency specializing in Shopify, Google & Meta Ecosystems, and data-driven revenue scaling.
+              Elite solo e-commerce growth consultant specializing in Shopify, Google & Meta Ecosystems, and data-driven revenue scaling.
             </p>
             <a href="mailto:bashberryexpert@gmail.com" className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-foreground mb-4">
               <Mail className="h-4 w-4" /> bashberryexpert@gmail.com
@@ -70,17 +70,9 @@ const Footer = () => {
               <span>Proudly based in Alagbado, Ilorin, Nigeria — serving global brands.</span>
             </div>
 
-            {/* Social Icons */}
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
-                <a
-                  key={social.label}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-all hover:border-primary/40 hover:text-primary"
-                  aria-label={social.label}
-                >
+                <a key={social.label} href={social.url} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-secondary text-muted-foreground transition-all hover:border-primary/40 hover:text-primary" aria-label={social.label}>
                   {social.icon}
                 </a>
               ))}
@@ -93,7 +85,7 @@ const Footer = () => {
               {[
                 { label: "Home", path: "/" },
                 { label: "Services", path: "/services" },
-                { label: "Portfolio", path: "/portfolio" },
+                { label: "Results & Case Studies", path: "/portfolio" },
                 { label: "Pricing", path: "/pricing" },
                 { label: "Experience", path: "/experience" },
                 { label: "Contact", path: "/contact" },
