@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Pages</h4>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Pages</h3>
             <div className="space-y-3">
               {[
                 { label: "Home", path: "/" },
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Services</h4>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Services</h3>
             <div className="space-y-3">
               {["Web Development", "SEO", "SEM", "Social Media Marketing", "Web Designing", "Reputation Management"].map((s) => (
                 <Link key={s} to="/services" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">{s}</Link>
