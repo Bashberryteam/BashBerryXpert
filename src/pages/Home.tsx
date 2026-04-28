@@ -73,9 +73,9 @@ const Home = () => {
             Your Solo E-commerce Growth Expert
           </motion.div>
 
-          <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="mb-6 max-w-4xl text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-7xl">
+          <h1 className="mb-6 max-w-4xl text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-7xl">
             I Build and Scale High-Revenue{" "}<span className="text-gradient">Shopify Engines.</span>
-          </motion.h1>
+          </h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             I don't just build stores — I scale them. From technical design to Google/Meta Ecosystem mastery, I turn browsers into loyal buyers.
