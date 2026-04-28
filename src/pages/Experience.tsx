@@ -36,14 +36,31 @@ const Experience = () => {
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
           <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            Professional Background
+            About Bash Berry Xpert
           </motion.p>
           <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
-            My Skills & <span className="text-gradient">Experience</span>
+            The Technical Partner Behind <span className="text-gradient">The Top 10%</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Years of hands-on experience scaling e-commerce brands with data-driven strategies and cutting-edge tools.
+            Years of hands-on experience scaling Shopify brands with data-driven strategies, proven frameworks, and deep Google & Meta ecosystem expertise.
           </p>
+        </div>
+      </section>
+
+      {/* Human Bio */}
+      <section className="bg-background pt-20 pb-8">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="space-y-5 text-muted-foreground leading-relaxed">
+            <p>
+              Here's the truth most agencies won't tell you: <span className="text-foreground font-medium">90% of Shopify stores fail.</span> Not because the products are bad, and not because the owners aren't working hard — but because the traffic systems are broken and Google Merchant Center keeps the front door locked.
+            </p>
+            <p>
+              Bash Berry Xpert exists for one reason: to put you in the <span className="text-foreground font-medium">top 10%</span>. I'm the technical partner who fixes the plumbing behind your store — Merchant Center approvals, feed optimization, Google & Meta ad infrastructure, retention flows, and the analytics layer that proves what's working.
+            </p>
+            <p>
+              I don't sell vague "marketing." I run a specific, repeatable 5-Pillar Framework built from years of scaling real stores across fashion, jewelry, and niche categories. When you work with me, you're not hiring an agency — you're plugging into a senior operator who treats your store like his own.
+            </p>
+          </motion.div>
         </div>
       </section>
 

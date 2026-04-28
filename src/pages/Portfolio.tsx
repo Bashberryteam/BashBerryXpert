@@ -132,10 +132,10 @@ const Portfolio = () => {
       {/* Sales Proof & ROI */}
       <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
-          <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Proof of Performance</p>
-          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Sales Proof & ROI Results</h2>
+          <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Results Gallery</p>
+          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Proven Growth</h2>
           <p className="mx-auto mb-6 max-w-2xl text-center text-muted-foreground">
-            Real dashboards, real numbers. These metrics showcase actual client performance data across my 20+ brand portfolio.
+            Real dashboards, real revenue screenshots. These metrics showcase actual client performance data across my 20+ brand portfolio.
           </p>
           <div className="mb-14 text-center">
             <a

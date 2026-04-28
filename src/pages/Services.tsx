@@ -1,25 +1,207 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { Code, Share2, Palette, Search, Target, ShieldCheck, ArrowRight, CheckCircle2, Lock, ShoppingCart, Users, TrendingUp, Mail, BarChart3 } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Palette,
+  ShoppingCart,
+  Target,
+  Mail,
+  BarChart3,
+  ArrowRight,
+  CheckCircle2,
+  Lock,
+  Users,
+  TrendingUp,
+  ChevronDown,
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const services = [
-  { icon: Code, title: "Web Development", description: "High-performance Shopify stores built from scratch — custom themes, headless commerce, and enterprise-grade architecture." },
-  { icon: Share2, title: "Social Media Marketing", description: "Full-funnel social strategies across Instagram, Facebook, TikTok, and Pinterest to build brand awareness and drive sales." },
-  { icon: Palette, title: "Web Designing", description: "Conversion-optimized UI/UX design with premium aesthetics. Every pixel crafted to maximize engagement and trust." },
-  { icon: Target, title: "Search Engine Marketing (SEM)", description: "Google Ads, Shopping campaigns, and Performance Max strategies engineered for maximum ROAS and profitable acquisition." },
-  { icon: Search, title: "Search Engine Optimization (SEO)", description: "Technical SEO audits, content strategy, link building, and schema markup to dominate organic search results." },
-  { icon: ShieldCheck, title: "Reputation Management", description: "Proactive brand monitoring, review management, and crisis response to protect and elevate your online reputation." },
+type Pillar = {
+  num: string;
+  icon: typeof Palette;
+  title: string;
+  goal: string;
+  services: string[];
+  valueAdd: string;
+  accent: string;
+};
+
+const pillars: Pillar[] = [
+  {
+    num: "01",
+    icon: Palette,
+    title: "Store Design & Conversion Optimization (CRO)",
+    goal: "Turn visitors into buyers by making the store fast, beautiful, and built for conversions.",
+    services: [
+      "Custom Store Design & Redesign",
+      "Theme Branding & Identity",
+      "Mobile & Speed Optimization",
+      "UX Navigation Architecture",
+      "Product Page Conversion (Badges, Timers, Reviews)",
+      "One-Click Checkout Optimization",
+    ],
+    valueAdd: "I ensure your store loads in under 3 seconds and builds instant trust.",
+    accent: "from-primary/20 to-primary/5",
+  },
+  {
+    num: "02",
+    icon: ShoppingCart,
+    title: "Product & Catalog Enhancement",
+    goal: "Make products irresistible and easy to find.",
+    services: [
+      "Bulk Product Importation",
+      "SEO-Optimized Descriptions",
+      "Image Editing & Background Removal",
+      "Collection & SKU Organization",
+      "Psychological Pricing Strategies",
+    ],
+    valueAdd: "High-quality product presentation is the difference between a 'browse' and a 'buy.'",
+    accent: "from-accent/20 to-accent/5",
+  },
+  {
+    num: "03",
+    icon: Target,
+    title: "Traffic Generation & Brand Awareness",
+    goal: "Bring in the right audience through the Google & Meta Ecosystems.",
+    services: [
+      "Full SEO (Technical & On-Page)",
+      "Facebook & Instagram Ads",
+      "TikTok Ads",
+      "Google Search & Shopping Ads",
+      "Pinterest Marketing",
+      "Influencer Outreach",
+    ],
+    valueAdd:
+      "I solve the 'Locked Door' problem with guaranteed Google Merchant Center setup and high-intent traffic.",
+    accent: "from-primary/20 to-primary/5",
+  },
+  {
+    num: "04",
+    icon: Mail,
+    title: "Customer Retention & Revenue Maximization",
+    goal: "Turn one-time buyers into repeat customers.",
+    services: [
+      "Klaviyo Email Automation (Abandoned Cart, Welcome Series)",
+      "Post-Purchase Upsells",
+      "Loyalty & Rewards Programs",
+      "Subscription Setup",
+      "Exit-Intent Popups",
+    ],
+    valueAdd: "I maximize your ROI by selling more to the customers you already have.",
+    accent: "from-accent/20 to-accent/5",
+  },
+  {
+    num: "05",
+    icon: BarChart3,
+    title: "Analytics, Maintenance & Virtual Support",
+    goal: "Data-driven scaling and backend management.",
+    services: [
+      "Google Analytics 4 (GA4) Setup",
+      "Heatmaps & A/B Testing",
+      "Monthly Performance Reports",
+      "App Integration",
+      "Virtual Assistant for Daily Store Management",
+    ],
+    valueAdd:
+      "Growth isn't a one-time job — I provide the data and support to keep your store winning.",
+    accent: "from-primary/20 to-primary/5",
+  },
 ];
 
-const pillars = [
-  { icon: Palette, num: "01", title: "Store Design & CRO", desc: "I build premium Shopify stores engineered for speed, mobile-first UX, and maximum conversion rates. Every element is tested and optimized.", color: "from-primary/20 to-primary/5" },
-  { icon: ShoppingCart, num: "02", title: "Product & Catalog Enhancement", desc: "I optimize your product feeds, structured data, high-converting descriptions, and catalog architecture to increase discoverability and AOV.", color: "from-accent/20 to-accent/5" },
-  { icon: Target, num: "03", title: "Traffic Generation", desc: "I drive high-intent traffic through Google Shopping, Performance Max, Meta Ads, and Pinterest campaigns — all managed for profitable ROAS.", color: "from-primary/20 to-primary/5" },
-  { icon: Mail, num: "04", title: "Retention & Revenue", desc: "I build Klaviyo email flows, SMS sequences, loyalty programs, and post-purchase funnels that turn one-time buyers into lifetime customers.", color: "from-accent/20 to-accent/5" },
-  { icon: BarChart3, num: "05", title: "Analytics & Support", desc: "I provide GA4 setup, conversion tracking, custom dashboards, and ongoing strategic support to ensure continuous, data-driven growth.", color: "from-primary/20 to-primary/5" },
-];
+const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
+  const [open, setOpen] = useState(false);
+  const Icon = pillar.icon;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      className="group rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-primary/40 hover:shadow-neon"
+    >
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className="w-full text-left"
+        aria-expanded={open}
+      >
+        <div className="flex flex-col md:flex-row items-stretch">
+          <div
+            className={`flex items-center justify-center bg-gradient-to-br ${pillar.accent} px-8 py-8 md:w-48 md:shrink-0`}
+          >
+            <div className="text-center">
+              <span className="block text-4xl font-extrabold text-gradient mb-2">
+                {pillar.num}
+              </span>
+              <Icon className="mx-auto h-8 w-8 text-primary" />
+            </div>
+          </div>
+          <div className="flex-1 p-8">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h3 className="mb-2 text-xl font-bold text-foreground">{pillar.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  <span className="font-semibold text-foreground">Goal:</span> {pillar.goal}
+                </p>
+              </div>
+              <ChevronDown
+                className={`h-5 w-5 shrink-0 text-primary transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+              />
+            </div>
+          </div>
+        </div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden border-t border-border"
+          >
+            <div className="p-8 bg-section-alt/40">
+              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+                Key Services
+              </h4>
+              <ul className="mb-6 grid gap-3 sm:grid-cols-2">
+                {pillar.services.map((s) => (
+                  <li key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {s}
+                  </li>
+                ))}
+              </ul>
+              <div className="rounded-lg bg-primary/10 p-4 mb-6">
+                <p className="text-sm text-foreground">
+                  <span className="font-semibold text-primary">Value Add: </span>
+                  {pillar.valueAdd}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  to="/pricing"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
+                >
+                  Get Started <ArrowRight className="h-4 w-4" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/40"
+                >
+                  Talk to Me
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 const Services = () => {
   return (
@@ -28,98 +210,67 @@ const Services = () => {
 
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
-          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-            What I Do
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
+          >
+            The Shopify Sales Growth Framework
           </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
-            Comprehensive <span className="text-gradient">Growth Infrastructure</span>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl"
+          >
+            5 Pillars. One <span className="text-gradient">Growth Engine.</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            I don't just build stores — I architect end-to-end digital ecosystems designed to dominate your niche.
+            Every service I offer lives inside one of these 5 Pillars — the exact system I use to scale Shopify brands profitably. Hover or tap any pillar to explore the sub-services.
           </p>
         </div>
       </section>
 
-      {/* 6 Services Grid */}
+      {/* Interactive 5 Pillars */}
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service, i) => (
-              <motion.div key={service.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }} className="card-hover rounded-xl border border-border bg-card p-8">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-                <h3 className="mb-3 text-lg font-semibold text-foreground">{service.title}</h3>
-                <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{service.description}</p>
-                <Link to="/contact" className="text-sm font-medium text-primary transition-colors hover:text-foreground">
-                  Work With Me →
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5-Pillar Framework - Visual Bold Blocks */}
-      <section className="bg-section-alt py-24">
-        <div className="container mx-auto px-6">
-          <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">My Methodology</p>
-          <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">The 5-Pillar Shopify Sales Growth Framework</h2>
-          <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">
-            A holistic system I developed that covers every touchpoint of your e-commerce funnel — from discovery to retention.
-          </p>
-
           <div className="space-y-6">
             {pillars.map((p, i) => (
-              <motion.div
-                key={p.title}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="rounded-2xl border border-border bg-card overflow-hidden"
-              >
-                <div className="flex flex-col md:flex-row items-stretch">
-                  <div className={`flex items-center justify-center bg-gradient-to-br ${p.color} px-8 py-8 md:w-48 md:shrink-0`}>
-                    <div className="text-center">
-                      <span className="block text-4xl font-extrabold text-gradient mb-2">{p.num}</span>
-                      <p.icon className="mx-auto h-8 w-8 text-primary" />
-                    </div>
-                  </div>
-                  <div className="flex-1 p-8">
-                    <h3 className="mb-3 text-xl font-bold text-foreground">{p.title}</h3>
-                    <p className="text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
+              <PillarCard key={p.num} pillar={p} index={i} />
             ))}
           </div>
         </div>
       </section>
 
       {/* Locked Door Section */}
-      <section className="bg-background py-24">
+      <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
           <div className="grid items-center gap-12 md:grid-cols-2">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground">
                 <Lock className="h-4 w-4 text-primary" />
                 The 'Locked Door' Problem
               </div>
               <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl">
-                The Locked Door: Why 90% of Shopify Stores <span className="text-gradient">Fail</span>
+                Why 90% of Shopify Stores <span className="text-gradient">Fail</span>
               </h2>
               <p className="mb-6 text-muted-foreground leading-relaxed">
                 Imagine building a world-class store, stocking it with incredible products, and running ads — but the front door is locked. That's exactly what happens when Google Merchant Center rejects your store. Without approval, your products are invisible to millions of high-intent shoppers actively searching to buy.
-              </p>
-              <p className="mb-6 text-muted-foreground leading-relaxed">
-                Most store owners don't even realize this is the bottleneck. They blame their products, their prices, or their ads — but the real problem is they can't get through the door. I specialize in diagnosing and resolving Merchant Center suspensions, policy violations, and feed issues that keep stores locked out.
               </p>
               <p className="mb-6 font-medium text-foreground">
                 I am the specialist who unlocks this door — letting high-intent traffic flow directly to your products.
               </p>
               <ul className="space-y-3">
-                {["Feed optimization & structured data", "Policy compliance audits", "Suspension appeal & recovery", "Shopping campaign setup & scaling"].map((f) => (
+                {[
+                  "Feed optimization & structured data",
+                  "Policy compliance audits",
+                  "Suspension appeal & recovery",
+                  "Shopping campaign setup & scaling",
+                ].map((f) => (
                   <li key={f} className="flex items-center gap-3 text-sm text-muted-foreground">
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" /> {f}
                   </li>
@@ -127,7 +278,13 @@ const Services = () => {
               </ul>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-xl border border-border bg-card p-8">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="rounded-xl border border-border bg-card p-8"
+            >
               <h3 className="mb-6 text-xl font-bold text-foreground">The Ecosystem Formula</h3>
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
@@ -144,26 +301,36 @@ const Services = () => {
               </div>
               <div className="rounded-lg bg-primary/10 p-4 text-center">
                 <p className="text-sm text-muted-foreground mb-1">Result</p>
-                <p className="text-lg font-bold text-gradient">Traffic + Motivated Buyer + Discount = Explosive Sales</p>
+                <p className="text-lg font-bold text-gradient">
+                  Traffic + Motivated Buyer + Discount = Explosive Sales
+                </p>
               </div>
-              <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
-                This is my proven ecosystem logic. When all three elements converge — targeted traffic from Google/Meta, a motivated buyer searching with intent, and an irresistible offer — sales explode. Without the Merchant Center door open, you lose the first element entirely.
-              </p>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-section-alt py-20">
+      <section className="bg-background py-20">
         <div className="container mx-auto px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground">Ready to Scale?</h2>
           <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
-            Let me build a growth engine tailored to your brand.
+            Pick a package aligned to the pillars you need — or let's build a custom plan.
           </p>
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
-            Get Started <ArrowRight className="h-5 w-5" />
-          </Link>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              to="/pricing"
+              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon"
+            >
+              View Pricing <ArrowRight className="h-5 w-5" />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
       </section>
 
