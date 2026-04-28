@@ -16,7 +16,7 @@ const BrandsMarquee = () => {
           {[...brands, ...brands].map((brand, i) => (
             <span
               key={i}
-              className="text-xl font-semibold text-muted-foreground/50 transition-colors hover:text-foreground"
+              className="text-xl font-semibold text-muted-foreground/80 transition-colors hover:text-foreground"
             >
               {brand}
             </span>

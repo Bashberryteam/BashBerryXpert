@@ -110,7 +110,7 @@ const Home = () => {
         <div className="relative overflow-hidden">
           <div className="animate-marquee flex w-max gap-16 whitespace-nowrap">
             {[...brands, ...brands].map((brand, i) => (
-              <a key={i} href={brand.url} target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-muted-foreground/50 transition-colors hover:text-primary cursor-pointer">
+              <a key={i} href={brand.url} target="_blank" rel="noopener noreferrer" className="text-xl font-semibold text-muted-foreground/80 transition-colors hover:text-primary cursor-pointer">
                 {brand.name}
               </a>
             ))}
