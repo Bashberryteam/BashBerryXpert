@@ -47,10 +47,11 @@ const Navbar = () => {
           to="/contact"
           className="hidden items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon md:flex"
         >
-          Get Started <ArrowRight className="h-4 w-4" />
+          Start Your Growth <ArrowRight className="h-4 w-4" />
         </Link>
 
         <button
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           className="text-foreground md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
@@ -79,7 +80,7 @@ const Navbar = () => {
             className="mt-3 flex w-full items-center justify-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground"
             onClick={() => setMobileOpen(false)}
           >
-            Get Started <ArrowRight className="h-4 w-4" />
+            Start Your Growth <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       )}

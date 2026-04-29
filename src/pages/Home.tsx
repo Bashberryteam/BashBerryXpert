@@ -5,7 +5,9 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const badges = ["Full-Stack Growth", "Multi-Channel Marketing", "Revenue-First Approach"];
+const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
+
+const platforms = ["Shopify Partner", "Wix Expert", "WordPress", "WooCommerce", "Squarespace", "Square Online", "Google Ads"];
 
 const whyMe = [
   { icon: BarChart3, title: "Data-Driven Strategies", description: "Every decision backed by real analytics, A/B testing, and performance metrics — never guesswork." },
@@ -71,20 +73,20 @@ const Home = () => {
         <div className="container mx-auto flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-            Your Solo E-commerce Growth Expert
+            Multi-Platform Verified Growth Partner
           </motion.div>
 
           <h1 className="mb-6 max-w-4xl text-5xl font-extrabold leading-tight tracking-tight text-foreground md:text-7xl">
-            I Build and Scale High-Revenue{" "}<span className="text-gradient">Shopify Engines.</span>
+            Elite Web Performance &amp;{" "}<span className="text-gradient">Growth Systems</span> for Global Brands.
           </h1>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            I don't just build stores — I scale them. From technical design to Google/Meta Ecosystem mastery, I turn browsers into loyal buyers.
+            We don't just build websites; we engineer revenue-generating ecosystems. Verified expertise in Shopify, Wix, and WordPress tailored for high-ticket scaling.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mb-8 flex flex-col items-center gap-4 sm:flex-row">
-            <Link to="/services" className="bg-gradient-primary flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
-              View My Growth Framework <ArrowRight className="h-5 w-5" />
+            <Link to="/contact" className="bg-gradient-primary flex items-center gap-2 rounded-full px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
+              Start Your Growth <ArrowRight className="h-5 w-5" />
             </Link>
             <Link to="/portfolio" className="flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40">
               View Results
@@ -98,6 +100,22 @@ const Home = () => {
               <div key={badge} className="flex items-center gap-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-4 w-4 text-primary" /> {badge}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partner Trust Bar */}
+      <section aria-label="Verified platform partners" className="border-b border-border bg-section-alt py-10">
+        <div className="container mx-auto px-6">
+          <p className="mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+            Verified Across Leading Platforms
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 grayscale opacity-80">
+            {platforms.map((p) => (
+              <span key={p} className="text-sm md:text-base font-bold tracking-wide text-foreground/80">
+                {p}
+              </span>
             ))}
           </div>
         </div>
