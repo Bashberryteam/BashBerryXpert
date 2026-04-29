@@ -6,53 +6,53 @@ import Footer from "@/components/Footer";
 
 const plans = [
   {
-    name: "The Foundation",
+    name: "Essential Growth",
     price: "$450",
     period: "/month",
-    description: "Pillars 1 & 2 — for new Shopify stores that need a conversion-ready foundation.",
+    description: "Pillars 1 & 2 — a conversion-ready foundation on Shopify, Wix, WordPress or your platform of choice.",
     features: [
-      "Pillar 1: Store Design & CRO",
-      "Pillar 2: Product & Catalog Enhancement",
-      "Mobile & speed optimization",
-      "SEO-optimized product descriptions",
+      "Platform Engineering (Shopify / Wix / WordPress)",
+      "Catalog & Inventory Mastery",
+      "Technical SEO foundation",
+      "Performance Optimization (Core Web Vitals)",
+      "Technical Launch Strategy",
+      "Mobile-first UI/UX implementation",
       "Google Merchant Center setup",
       "Monthly performance report",
-      "Email support",
     ],
     popular: false,
   },
   {
-    name: "The Growth Engine",
+    name: "Professional Scale",
     price: "$850",
     period: "/month",
-    description: "Pillars 1–3 — when you're ready to turn a live store into a traffic-generating machine.",
+    description: "Pillars 1–3 — turn a live store into a multi-channel traffic-generating machine.",
     features: [
-      "Everything in The Foundation",
-      "Pillar 3: Traffic Generation & Brand Awareness",
-      "Google Search & Shopping Ads",
-      "Meta (Facebook & Instagram) Ads",
-      "TikTok & Pinterest marketing",
-      "Technical & on-page SEO",
-      "Bi-weekly strategy calls",
-      "Priority support",
+      "Everything in Essential Growth",
+      "The Search Ecosystem (SEO + Google Ads)",
+      "Google Search, Shopping & Performance Max",
+      "Advanced Technical SEO & schema",
+      "Performance Optimization tuning",
+      "Technical Launch Strategy for new channels",
+      "Multi-channel sync (Etsy / Amazon / eBay)",
+      "Bi-weekly strategy calls & priority support",
     ],
     popular: true,
   },
   {
-    name: "The Xpert Authority",
+    name: "Xpert Authority",
     price: "$1,200",
     period: "/month",
-    description: "All 5 Pillars — the complete Shopify Sales Growth Framework, fully managed.",
+    description: "All 5 Pillars — the complete Bash Berry growth system, fully managed end-to-end.",
     features: [
-      "Everything in The Growth Engine",
-      "Pillar 4: Customer Retention & Revenue Maximization",
-      "Pillar 5: Analytics, Maintenance & Virtual Support",
-      "Klaviyo email & SMS automation",
-      "Post-purchase upsells & loyalty programs",
-      "GA4, heatmaps & A/B testing",
-      "Virtual assistant for daily store management",
-      "Weekly strategy calls",
-      "Dedicated support channel",
+      "Everything in Professional Scale",
+      "The Meta & Social Ecosystem (FB / IG / TikTok / Pinterest)",
+      "Retention & Revenue Systems (Klaviyo / CRM)",
+      "Full SEO, Performance Optimization & Launch Strategy",
+      "Abandoned cart, loyalty & subscription flows",
+      "GA4, heatmaps & A/B testing program",
+      "Dedicated growth lead & weekly strategy calls",
+      "Priority support channel",
     ],
     popular: false,
   },
@@ -119,7 +119,7 @@ const Pricing = () => {
           <div className="mt-16 text-center">
             <p className="text-muted-foreground">
               Need a custom solution?{" "}
-              <Link to="/contact" className="font-medium text-primary hover:text-foreground transition-colors">Contact me</Link>{" "}
+              <Link to="/contact" className="font-medium text-primary hover:text-foreground transition-colors">Contact us</Link>{" "}
               for a tailored growth plan.
             </p>
           </div>
