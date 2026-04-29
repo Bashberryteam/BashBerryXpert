@@ -2,15 +2,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Palette,
-  ShoppingCart,
-  Target,
-  Mail,
-  BarChart3,
+  Layers,
+  Database,
+  Search,
+  Megaphone,
+  Repeat,
   ArrowRight,
   CheckCircle2,
   Lock,
   Users,
+  ShoppingCart,
   TrendingUp,
   ChevronDown,
 } from "lucide-react";
@@ -19,7 +20,7 @@ import Footer from "@/components/Footer";
 
 type Pillar = {
   num: string;
-  icon: typeof Palette;
+  icon: typeof Layers;
   title: string;
   goal: string;
   services: string[];
@@ -30,81 +31,87 @@ type Pillar = {
 const pillars: Pillar[] = [
   {
     num: "01",
-    icon: Palette,
-    title: "Store Design & Conversion Optimization (CRO)",
-    goal: "Turn visitors into buyers by making the store fast, beautiful, and built for conversions.",
+    icon: Layers,
+    title: "Platform Engineering",
+    goal: "Architect lightning-fast, conversion-ready storefronts on the platform that fits your business.",
     services: [
-      "Custom Store Design & Redesign",
-      "Theme Branding & Identity",
-      "Mobile & Speed Optimization",
-      "UX Navigation Architecture",
-      "Product Page Conversion (Badges, Timers, Reviews)",
-      "One-Click Checkout Optimization",
+      "Shopify, Wix & WordPress store design / redesign",
+      "WooCommerce & Squarespace builds",
+      "Square Online setup & migration",
+      "Mobile-first UI/UX systems",
+      "Core Web Vitals & speed optimization",
+      "Custom theme development & component libraries",
     ],
-    valueAdd: "I ensure your store loads in under 3 seconds and builds instant trust.",
+    valueAdd:
+      "We engineer storefronts that load in under 3 seconds and convert across every device.",
     accent: "from-primary/20 to-primary/5",
   },
   {
     num: "02",
-    icon: ShoppingCart,
-    title: "Product & Catalog Enhancement",
-    goal: "Make products irresistible and easy to find.",
+    icon: Database,
+    title: "Catalog & Inventory Mastery",
+    goal: "Turn your product catalog into a high-performance sales asset across every channel.",
     services: [
-      "Bulk Product Importation",
-      "SEO-Optimized Descriptions",
-      "Image Editing & Background Removal",
-      "Collection & SKU Organization",
-      "Psychological Pricing Strategies",
+      "Bulk migrations & SKU restructuring",
+      "Technical SEO-optimized product data",
+      "Multi-channel sync: Etsy, Amazon, eBay",
+      "Image editing, retouching & background removal",
+      "Collection architecture & merchandising",
+      "Inventory & variant logic automation",
     ],
-    valueAdd: "High-quality product presentation is the difference between a 'browse' and a 'buy.'",
+    valueAdd:
+      "A clean, syndicated catalog is the difference between a single store and a true omnichannel business.",
     accent: "from-accent/20 to-accent/5",
   },
   {
     num: "03",
-    icon: Target,
-    title: "Traffic Generation & Brand Awareness",
-    goal: "Bring in the right audience through the Google & Meta Ecosystems.",
+    icon: Search,
+    title: "The Search Ecosystem",
+    goal: "Capture high-intent buyers through Google's full search and shopping stack.",
     services: [
-      "Full SEO (Technical & On-Page)",
-      "Facebook & Instagram Ads",
-      "TikTok Ads",
-      "Google Search & Shopping Ads",
-      "Pinterest Marketing",
-      "Influencer Outreach",
+      "Full-funnel technical & on-page SEO",
+      "Google Merchant Center 'Locked Door' solutions",
+      "Suspension diagnosis, appeal & recovery",
+      "Google Search & Shopping Ads management",
+      "Performance Max & feed optimization",
+      "Schema, sitemaps & site architecture",
     ],
     valueAdd:
-      "I solve the 'Locked Door' problem with guaranteed Google Merchant Center setup and high-intent traffic.",
+      "We unlock Google's highest-intent traffic — even when other agencies hit the wall.",
     accent: "from-primary/20 to-primary/5",
   },
   {
     num: "04",
-    icon: Mail,
-    title: "Customer Retention & Revenue Maximization",
-    goal: "Turn one-time buyers into repeat customers.",
+    icon: Megaphone,
+    title: "The Meta & Social Ecosystem",
+    goal: "Intercept and immerse buyers across Meta, TikTok and Pinterest before they ever search.",
     services: [
-      "Klaviyo Email Automation (Abandoned Cart, Welcome Series)",
-      "Post-Purchase Upsells",
-      "Loyalty & Rewards Programs",
-      "Subscription Setup",
-      "Exit-Intent Popups",
+      "Facebook & Instagram Ads (full-funnel)",
+      "Reels strategy, scripting & creative direction",
+      "TikTok Ads & creator partnerships",
+      "Pinterest Marketing for high-AOV niches",
+      "Influencer outreach & UGC pipelines",
+      "Pixel, CAPI & attribution setup",
     ],
-    valueAdd: "I maximize your ROI by selling more to the customers you already have.",
+    valueAdd:
+      "Our Interception & Immersion playbook finds buyers in-feed and pulls them into your brand world.",
     accent: "from-accent/20 to-accent/5",
   },
   {
     num: "05",
-    icon: BarChart3,
-    title: "Analytics, Maintenance & Virtual Support",
-    goal: "Data-driven scaling and backend management.",
+    icon: Repeat,
+    title: "Retention & Revenue Systems",
+    goal: "Compound revenue from every customer you've already paid to acquire.",
     services: [
-      "Google Analytics 4 (GA4) Setup",
-      "Heatmaps & A/B Testing",
-      "Monthly Performance Reports",
-      "App Integration",
-      "Virtual Assistant for Daily Store Management",
+      "Klaviyo / CRM email & SMS automation",
+      "Abandoned cart & browse-recovery flows",
+      "Post-purchase upsells & cross-sells",
+      "Loyalty, rewards & subscription programs",
+      "Win-back & VIP segmentation",
+      "LTV modelling & cohort reporting",
     ],
     valueAdd:
-      "Growth isn't a one-time job — I provide the data and support to keep your store winning.",
+      "Retention is where margin lives — we turn one-time buyers into a predictable revenue base.",
     accent: "from-primary/20 to-primary/5",
   },
 ];
@@ -192,7 +199,7 @@ const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
                   to="/contact"
                   className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/40"
                 >
-                  Talk to Me
+                  Talk to Us
                 </Link>
               </div>
             </div>
@@ -216,17 +223,17 @@ const Services = () => {
             animate={{ opacity: 1 }}
             className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
           >
-            The Shopify Sales Growth Framework
+            The Bash Berry 5-Pillar Framework
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl"
           >
-            5 Pillars. One <span className="text-gradient">Growth Engine.</span>
+            5 Growth Engines. One <span className="text-gradient">Revenue System.</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Every service I offer lives inside one of these 5 Pillars — the exact system I use to scale Shopify brands profitably. Hover or tap any pillar to explore the sub-services.
+            Every service we deliver lives inside one of these 5 Pillars — the exact system we use to scale brands across Shopify, Wix, WordPress, WooCommerce, Squarespace and Square Online. Tap any pillar to explore the sub-services.
           </p>
         </div>
       </section>
@@ -257,13 +264,13 @@ const Services = () => {
                 The 'Locked Door' Problem
               </div>
               <h2 className="mb-6 text-3xl font-bold text-foreground md:text-4xl">
-                Why 90% of Shopify Stores <span className="text-gradient">Fail</span>
+                Why 90% of Stores <span className="text-gradient">Stall</span>
               </h2>
               <p className="mb-6 text-muted-foreground leading-relaxed">
                 Imagine building a world-class store, stocking it with incredible products, and running ads — but the front door is locked. That's exactly what happens when Google Merchant Center rejects your store. Without approval, your products are invisible to millions of high-intent shoppers actively searching to buy.
               </p>
               <p className="mb-6 font-medium text-foreground">
-                I am the specialist who unlocks this door — letting high-intent traffic flow directly to your products.
+                We are the specialists who unlock this door — letting high-intent traffic flow directly to your products.
               </p>
               <ul className="space-y-3">
                 {[
@@ -329,7 +336,7 @@ const Services = () => {
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40"
             >
-              Get Started
+              Start Your Growth
             </Link>
           </div>
         </div>
