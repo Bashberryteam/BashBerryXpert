@@ -80,11 +80,38 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Pages</h3>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Services</h3>
             <div className="space-y-3">
               {[
-                { label: "Home", path: "/" },
-                { label: "Services", path: "/services" },
+                "Web Development",
+                "Search Engine Optimization (SEO)",
+                "Search Engine Marketing (SEM)",
+                "Social Media Marketing",
+                "Web Designing",
+                "Reputation Management",
+              ].map((s) => (
+                <Link key={s} to="/services" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">{s}</Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Ecosystems</h3>
+            <div className="space-y-3">
+              {[
+                "Shopify Growth",
+                "Wix Expert Solutions",
+                "WordPress Engineering",
+                "Google Merchant Center",
+                "Meta Advertising",
+              ].map((s) => (
+                <Link key={s} to="/services" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">{s}</Link>
+              ))}
+            </div>
+
+            <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wider text-foreground">Company</h3>
+            <div className="space-y-3">
+              {[
                 { label: "Results & Case Studies", path: "/portfolio" },
                 { label: "Pricing", path: "/pricing" },
                 { label: "Experience", path: "/experience" },
@@ -94,19 +121,16 @@ const Footer = () => {
               ))}
             </div>
           </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">Services</h3>
-            <div className="space-y-3">
-              {["Web Development", "SEO", "SEM", "Social Media Marketing", "Web Designing", "Reputation Management"].map((s) => (
-                <Link key={s} to="/services" className="block text-sm text-muted-foreground transition-colors hover:text-foreground">{s}</Link>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8 text-center">
+        <div className="mt-12 flex flex-col items-center gap-6 border-t border-border pt-8 md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">© {new Date().getFullYear()} Bash Berry Xpert. All rights reserved.</p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
+          >
+            Let's Scale Your Brand
+          </Link>
         </div>
       </div>
     </footer>
