@@ -11,9 +11,9 @@ const platforms = ["Shopify Partner", "Wix Expert", "WordPress", "WooCommerce", 
 
 const whyMe = [
   { icon: BarChart3, title: "Data-Driven Strategies", description: "Every decision backed by real analytics, A/B testing, and performance metrics — never guesswork." },
-  { icon: Shield, title: "5-Pillar Framework", description: "My proprietary system covers Store Design, SEO, Google/Meta Ads, CRO, and Retention for complete growth." },
-  { icon: Zap, title: "Google Merchant 'Locked Door' Solutions", description: "90% of stores fail without Google Merchant Center approval. I specialize in unlocking this critical channel." },
-  { icon: Target, title: "Revenue-First Approach", description: "I focus on profitable growth, not vanity metrics. Every dollar spent must generate measurable ROI." },
+  { icon: Shield, title: "5-Pillar Framework", description: "Our proprietary system covers Store Design, SEO, Google/Meta Ads, CRO, and Retention for complete growth." },
+  { icon: Zap, title: "Google Merchant 'Locked Door' Solutions", description: "90% of stores fail without Google Merchant Center approval. We specialize in unlocking this critical channel." },
+  { icon: Target, title: "Revenue-First Approach", description: "We focus on profitable growth, not vanity metrics. Every dollar spent must generate measurable ROI." },
 ];
 
 const brands = [
@@ -143,7 +143,7 @@ const Home = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why Choose Me</p>
             <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Your Unfair Competitive Advantage</h2>
-            <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">Most agencies guess. I engineer growth with a proven framework, proprietary strategies, and deep platform expertise.</p>
+            <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">Most agencies guess. We engineer growth with a proven framework, proprietary strategies, and deep platform expertise.</p>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {whyMe.map((item, index) => (
@@ -186,7 +186,7 @@ const TestimonialSlideshow = ({ testimonials }: { testimonials: Testimonial[] })
     <section className="bg-background py-24">
       <div className="container mx-auto px-6">
         <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Client Testimonials</p>
-        <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">What My Clients Say</h2>
+        <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">What Our Clients Say</h2>
 
         <div className="mx-auto max-w-2xl text-center">
           <motion.div key={current} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="rounded-xl border border-border bg-card p-10">

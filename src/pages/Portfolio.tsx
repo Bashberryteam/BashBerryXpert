@@ -328,6 +328,70 @@ const Portfolio = () => {
           </div>
         </section>
 
+        {/* Sales Proofs Gallery */}
+        <section className="bg-section-alt py-24">
+          <div className="container mx-auto px-6">
+            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+              Sales Proofs
+            </p>
+            <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">
+              Receipts, Not Promises.
+            </h2>
+            <p className="mx-auto mb-10 max-w-2xl text-center text-muted-foreground">
+              A growing gallery of order confirmations, payout reports and revenue snapshots from the brands we manage. Tap any tile to open the full evidence library.
+            </p>
+
+            <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {[
+                { label: "Shopify Orders", caption: "Confirmed daily order volume" },
+                { label: "Stripe Payouts", caption: "Net revenue settlements" },
+                { label: "Klaviyo Revenue", caption: "Lifecycle email attribution" },
+                { label: "Google Ads Conv.", caption: "Tracked purchases & ROAS" },
+                { label: "Meta Purchases", caption: "CAPI-verified conversions" },
+                { label: "GA4 Revenue", caption: "Cross-channel revenue total" },
+                { label: "Merchant Center", caption: "Reinstated & scaling feeds" },
+                { label: "Wix Sales Report", caption: "Multi-store performance" },
+              ].map((tile, i) => (
+                <motion.a
+                  key={tile.label}
+                  href="https://drive.google.com/drive/folders/15pn32x14HMnDPHl4VkvfWBtRVlCfdQ6V?usp=drive_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: (i % 4) * 0.05 }}
+                  className="group relative overflow-hidden rounded-xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
+                  aria-label={`Open ${tile.label} proofs`}
+                >
+                  <div className="relative flex h-40 items-center justify-center bg-gradient-to-br from-secondary via-secondary/60 to-background">
+                    <div className="absolute inset-0 opacity-30" style={{
+                      backgroundImage:
+                        "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
+                      backgroundSize: "24px 24px",
+                    }} />
+                    <div className="relative flex flex-col items-center">
+                      <BarChart3 className="mb-2 h-9 w-9 text-primary/60" aria-hidden="true" />
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Screenshot</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between border-t border-border px-4 py-3">
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">{tile.label}</p>
+                      <p className="text-[11px] text-muted-foreground">{tile.caption}</p>
+                    </div>
+                    <ExternalLink className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+
+            <p className="mt-8 text-center text-xs text-muted-foreground">
+              Official screenshots are uploaded to the Drive library. Tiles will swap to live images as new proofs are added.
+            </p>
+          </div>
+        </section>
+
         {/* Testimonials */}
         <TestimonialsSection />
 
