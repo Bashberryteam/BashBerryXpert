@@ -173,7 +173,7 @@ const Contact = () => {
                     <label className="mb-2 block text-sm text-muted-foreground">Rating</label>
                     <div className="flex gap-2">
                       {[1, 2, 3, 4, 5].map((n) => (
-                        <button key={n} type="button" onClick={() => setReviewForm({ ...reviewForm, rating: n })} className="transition-transform hover:scale-110">
+                        <button key={n} type="button" aria-label={`Rate ${n} star${n === 1 ? "" : "s"}`} onClick={() => setReviewForm({ ...reviewForm, rating: n })} className="transition-transform hover:scale-110">
                           <Star className={`h-6 w-6 ${n <= reviewForm.rating ? "fill-primary text-primary" : "text-muted"}`} />
                         </button>
                       ))}
