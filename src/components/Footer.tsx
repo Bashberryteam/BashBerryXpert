@@ -67,7 +67,7 @@ const Footer = () => {
             </a>
             <div className="flex items-start gap-2 text-sm text-muted-foreground mb-6">
               <MapPin className="h-4 w-4 mt-0.5 shrink-0 text-primary" />
-              <span>Proudly based in Alagbado, Ilorin, Nigeria — serving global brands.</span>
+              <span>Global — Remote worldwide. Serving brands across every timezone.</span>
             </div>
 
             <div className="flex items-center gap-3">
