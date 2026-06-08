@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, Shield, BarChart3, Zap, Target, Star } from "
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
 
@@ -65,6 +66,17 @@ const testimonials = [
 const Home = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Bash Berry Xpert | Shopify, Wix & Ads Growth Systems"
+        description="Multi-platform e-commerce growth partner. We engineer revenue systems on Shopify, Wix & WordPress using our 5-Pillar Framework. Google Ads & Meta specialists."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Bash Berry Xpert",
+          url: "https://bashberry.lovable.app/",
+        }}
+      />
       <Navbar />
       <main>
 

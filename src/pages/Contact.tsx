@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Mail, Send, Star, MessageSquare } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const serviceOptions = [
   "Web Development",
@@ -55,6 +56,11 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Contact | Start Your Growth — Bash Berry Xpert"
+        description="Partner with Bash Berry Xpert. WhatsApp +44 7451 250630, email bashberryexpert@gmail.com, or submit a brief to scale your Shopify/Wix store."
+        path="/contact"
+      />
       <Navbar />
       <main>
 

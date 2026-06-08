@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, Briefcase, GraduationCap, Award } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const timeline = [
   { icon: Briefcase, year: "2022 – Present", title: "Founder & Lead Strategist", company: "Bash Berry Xpert", description: "Leading multi-platform e-commerce growth across Shopify, Wix, WordPress, WooCommerce and Squarespace. Specializing in Google/Meta ecosystems, technical SEO, and conversion optimization." },
@@ -31,6 +32,11 @@ const certifications = [
 const Experience = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Experience & Certifications | Bash Berry Xpert"
+        description="Verified Shopify, Wix, and Google Partner expertise. Years of multi-platform e-commerce engineering, ad-buying, and growth-systems delivery."
+        path="/experience"
+      />
       <Navbar />
       <main>
 
