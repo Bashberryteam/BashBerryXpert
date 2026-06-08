@@ -40,7 +40,7 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const message = `Hi Bash Berry Xpert!%0A%0A*New Partnership Inquiry*%0A%0AName: ${encodeURIComponent(form.firstName + " " + form.lastName)}%0AEmail: ${encodeURIComponent(form.email)}%0AStore: ${encodeURIComponent(form.storeUrl || "N/A")}%0AService: ${encodeURIComponent(form.service)}%0ABudget: ${encodeURIComponent(form.budget)}%0AChallenge: ${encodeURIComponent(form.challenge || "N/A")}`;
-    window.open(`https://wa.me/2347042336338?text=${message}`, "_blank");
+    window.open(`https://wa.me/447451250630?text=${message}`, "_blank");
     setSubmitted(true);
     setForm({ firstName: "", lastName: "", email: "", storeUrl: "", service: "", budget: "", challenge: "" });
     setTimeout(() => setSubmitted(false), 4000);
