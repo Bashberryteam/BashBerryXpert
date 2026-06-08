@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2, ArrowRight, Star } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 const plans = [
   {
@@ -59,8 +60,28 @@ const plans = [
 ];
 
 const Pricing = () => {
+  const offerJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Bash Berry Xpert Growth Plans",
+    itemListElement: plans.map((p, i) => ({
+      "@type": "Offer",
+      position: i + 1,
+      name: p.name,
+      description: p.description,
+      price: p.price.replace(/[^0-9]/g, ""),
+      priceCurrency: "USD",
+      category: "E-commerce Growth Service",
+    })),
+  };
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Pricing | Shopify, Wix & Ads Growth Plans — Bash Berry Xpert"
+        description="Transparent monthly pricing for Shopify, Wix, and WordPress growth: Essential $450, Professional $850, Xpert Authority $1,200. Full-funnel ROI."
+        path="/pricing"
+        jsonLd={offerJsonLd}
+      />
       <Navbar />
       <main>
 
@@ -78,6 +99,9 @@ const Pricing = () => {
 
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
+          <h2 className="mb-12 text-center text-3xl font-bold text-foreground md:text-4xl">
+            Choose Your <span className="text-gradient">Growth Tier</span>
+          </h2>
           <div className="grid gap-8 lg:grid-cols-3">
             {plans.map((plan, i) => (
               <motion.div

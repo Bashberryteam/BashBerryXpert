@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ExternalLink, TrendingUp, BarChart3, LineChart, ShoppingBag } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
 type Platform = "Shopify" | "WordPress" | "Wix" | "WooCommerce" | "Squarespace" | "Square Online";
@@ -210,6 +211,11 @@ const performanceMetrics = [
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Portfolio | 20+ Brand Results & Sales Proofs — Bash Berry Xpert"
+        description="Power-grid showcase of 20+ scaled brands with verified ROAS, Shopify/Stripe/Klaviyo revenue dashboards, and full sales-proof gallery."
+        path="/portfolio"
+      />
       <Navbar />
       <main>
         {/* Hero */}

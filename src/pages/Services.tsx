@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import SEO from "@/components/SEO";
 
 type Pillar = {
   num: string;
@@ -213,6 +214,19 @@ const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
 const Services = () => {
   return (
     <div className="min-h-screen bg-background">
+      <SEO
+        title="Services | 5-Pillar E-commerce Growth Framework — Bash Berry Xpert"
+        description="Platform engineering, SEO, Google & Meta Ads, CRO, and retention systems built on our 5-Pillar Growth Framework for Shopify, Wix & WordPress stores."
+        path="/services"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          serviceType: "E-commerce Growth Services",
+          provider: { "@type": "Organization", name: "Bash Berry Xpert" },
+          areaServed: "Worldwide",
+          description: "5-Pillar Growth Framework: Platform Engineering, Search Ecosystem, Meta & Social Ecosystem, Retention & Revenue Systems, Performance Optimization.",
+        }}
+      />
       <Navbar />
       <main>
 
