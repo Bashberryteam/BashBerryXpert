@@ -10,7 +10,7 @@ const plans = [
     name: "Essential Growth",
     price: "$450",
     period: "/month",
-    description: "Pillars 1 & 2 — a conversion-ready foundation on Shopify, Wix, WordPress or your platform of choice.",
+    description: "Strategies 1 & 2 — a conversion-ready foundation on Shopify, Wix, WordPress or your platform of choice.",
     features: [
       "Platform Engineering (Shopify / Wix / WordPress)",
       "Catalog & Inventory Mastery",
@@ -27,7 +27,7 @@ const plans = [
     name: "Professional Scale",
     price: "$850",
     period: "/month",
-    description: "Pillars 1–3 — turn a live store into a multi-channel traffic-generating machine.",
+    description: "Strategies 1–3 — turn a live store into a multi-channel traffic-generating machine.",
     features: [
       "Everything in Essential Growth",
       "The Search Ecosystem (SEO + Google Ads)",
@@ -44,7 +44,7 @@ const plans = [
     name: "Xpert Authority",
     price: "$1,200",
     period: "/month",
-    description: "All 5 Pillars — the complete Bash Berry growth system, fully managed end-to-end.",
+    description: "All 5 growth strategies — the complete Bash Berry growth system, fully managed end-to-end.",
     features: [
       "Everything in Professional Scale",
       "The Meta & Social Ecosystem (FB / IG / TikTok / Pinterest)",
