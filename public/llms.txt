@@ -2,11 +2,11 @@
 
 > Multi-platform e-commerce growth partner engineering revenue systems on Shopify, Wix, WordPress, WooCommerce, Squarespace, and Square Online.
 
-Bash Berry Xpert delivers a 5-Pillar Growth Framework — Platform Engineering, Search Ecosystem (SEO + Google Ads), Meta & Social Ecosystem, Retention & Revenue Systems, and Performance Optimization — for D2C and global e-commerce brands. Specializing in Google Merchant Center recovery, Meta advertising, and full-funnel CRO.
+Bash Berry Xpert delivers a Core Revenue Growth Strategies — Platform Engineering, Search Ecosystem (SEO + Google Ads), Meta & Social Ecosystem, Retention & Revenue Systems, and Performance Optimization — for D2C and global e-commerce brands. Specializing in Google Merchant Center recovery, Meta advertising, and full-funnel CRO.
 
 ## Pages
 
-- [Home](/): Overview of the 5-Pillar Growth Framework and verified platform partnerships.
+- [Home](/): Overview of the Core Revenue Growth Strategies and verified platform partnerships.
 - [Services](/services): Platform engineering, SEO/SEM, Meta advertising, CRO, and retention systems.
 - [Portfolio](/portfolio): Power-grid showcase of 20+ brands and sales-proof gallery.
 - [Pricing](/pricing): Essential Growth, Professional Scale, and Xpert Authority monthly plans.

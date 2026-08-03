@@ -3,10 +3,10 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Layers,
-  Database,
   Search,
   Megaphone,
   Repeat,
+  BarChart3,
   ArrowRight,
   CheckCircle2,
   Lock,
@@ -14,112 +14,93 @@ import {
   ShoppingCart,
   TrendingUp,
   ChevronDown,
+  Globe,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 
-type Pillar = {
+const WHATSAPP = "https://wa.me/447451250630";
+
+type Strategy = {
   num: string;
   icon: typeof Layers;
   title: string;
-  goal: string;
-  services: string[];
-  valueAdd: string;
+  scope: "All Platforms" | "Universal Search Systems" | "Platform-Specific";
+  compatibility: string;
+  does: string;
+  result: string;
   accent: string;
 };
 
-const pillars: Pillar[] = [
+const strategies: Strategy[] = [
   {
     num: "01",
     icon: Layers,
-    title: "Platform Engineering",
-    goal: "Architect lightning-fast, conversion-ready storefronts on the platform that fits your business.",
-    services: [
-      "Shopify, Wix & WordPress store design / redesign",
-      "WooCommerce & Squarespace builds",
-      "Square Online setup & migration",
-      "Mobile-first UI/UX systems",
-      "Core Web Vitals & speed optimization",
-      "Custom theme development & component libraries",
-    ],
-    valueAdd:
-      "We engineer storefronts that load in under 3 seconds and convert across every device.",
+    title: "Store UX & Conversion Rate Engineering (CRO)",
+    scope: "All Platforms",
+    compatibility: "Shopify, Wix, WordPress / WooCommerce, Squarespace, Square Online",
+    does:
+      "Mobile-first redesigns, UI performance, image lazy-loading, speed optimization, cart friction elimination, and high-trust badge layout.",
+    result:
+      "Reduces bounce rates, increases average session duration, and turns existing visitors into instant buyers without extra ad spend.",
     accent: "from-primary/20 to-primary/5",
   },
   {
     num: "02",
-    icon: Database,
-    title: "Catalog & Inventory Mastery",
-    goal: "Turn your product catalog into a high-performance sales asset across every channel.",
-    services: [
-      "Bulk migrations & SKU restructuring",
-      "Technical SEO-optimized product data",
-      "Multi-channel sync: Etsy, Amazon, eBay",
-      "Image editing, retouching & background removal",
-      "Collection architecture & merchandising",
-      "Inventory & variant logic automation",
-    ],
-    valueAdd:
-      "A clean, syndicated catalog is the difference between a single store and a true omnichannel business.",
+    icon: Search,
+    title: "Google Search & Shopping Ecosystem Engine",
+    scope: "Universal Search Systems",
+    compatibility:
+      "Shopify & WooCommerce specialize in deep Merchant Center syncing; Wix & Squarespace utilize full Schema & On-Page SEO engines",
+    does:
+      "Captures active buyers using Google Search SEO, Google Merchant Center feed fixes (resolving product approval issues), and targeted Google Shopping Ads.",
+    result:
+      "Captures high-intent customers who are already searching to buy, creating reliable organic & paid sales traffic.",
     accent: "from-accent/20 to-accent/5",
   },
   {
     num: "03",
-    icon: Search,
-    title: "The Search Ecosystem",
-    goal: "Capture high-intent buyers through Google's full search and shopping stack.",
-    services: [
-      "Full-funnel technical & on-page SEO",
-      "Google Merchant Center 'Locked Door' solutions",
-      "Suspension diagnosis, appeal & recovery",
-      "Google Search & Shopping Ads management",
-      "Performance Max & feed optimization",
-      "Schema, sitemaps & site architecture",
-    ],
-    valueAdd:
-      "We unlock Google's highest-intent traffic — even when other agencies hit the wall.",
+    icon: Megaphone,
+    title: "Meta Social Ecosystem Interception",
+    scope: "All Platforms",
+    compatibility: "Integrates with Facebook, Instagram, TikTok, Pinterest and Google",
+    does:
+      "Intercepts casual scrollers through visually immersive Reel/Story ad funnels, lookalike targeting, dynamic catalog ads, and seamless social shopping setups.",
+    result:
+      "Drives high-volume impulse purchases and builds long-term social brand equity.",
     accent: "from-primary/20 to-primary/5",
   },
   {
     num: "04",
-    icon: Megaphone,
-    title: "The Meta & Social Ecosystem",
-    goal: "Intercept and immerse buyers across Meta, TikTok and Pinterest before they ever search.",
-    services: [
-      "Facebook & Instagram Ads (full-funnel)",
-      "Reels strategy, scripting & creative direction",
-      "TikTok Ads & creator partnerships",
-      "Pinterest Marketing for high-AOV niches",
-      "Influencer outreach & UGC pipelines",
-      "Pixel, CAPI & attribution setup",
-    ],
-    valueAdd:
-      "Our Interception & Immersion playbook finds buyers in-feed and pulls them into your brand world.",
+    icon: Repeat,
+    title: "Retention, Lifecycle & Email Marketing Funnels",
+    scope: "All Platforms",
+    compatibility: "Klaviyo, Omnisend and Mailchimp integrations",
+    does:
+      "Automated multi-touch sequences: abandoned cart recovery, VIP welcome series, win-back flows, post-purchase cross-sells, and exit-intent popups.",
+    result:
+      "Maximizes Customer Lifetime Value (LTV) and generates consistent 20%–35% automated repeat revenue without relying strictly on paid ads.",
     accent: "from-accent/20 to-accent/5",
   },
   {
     num: "05",
-    icon: Repeat,
-    title: "Retention & Revenue Systems",
-    goal: "Compound revenue from every customer you've already paid to acquire.",
-    services: [
-      "Klaviyo / CRM email & SMS automation",
-      "Abandoned cart & browse-recovery flows",
-      "Post-purchase upsells & cross-sells",
-      "Loyalty, rewards & subscription programs",
-      "Win-back & VIP segmentation",
-      "LTV modelling & cohort reporting",
-    ],
-    valueAdd:
-      "Retention is where margin lives — we turn one-time buyers into a predictable revenue base.",
+    icon: BarChart3,
+    title: "Multi-Channel Catalog Sync & Data Analytics",
+    scope: "Platform-Specific",
+    compatibility:
+      "Shopify & WooCommerce for full multi-channel sync to Amazon / Etsy / eBay; GA4 & heatmaps available on all platforms",
+    does:
+      "Google Analytics 4 (GA4) custom event tracking, heatmap behavioral analysis, multi-channel product catalog syncing, and live dashboard metrics.",
+    result:
+      "Clear data visibility into where every dollar comes from so you can scale marketing channels predictably.",
     accent: "from-primary/20 to-primary/5",
   },
 ];
 
-const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
+const StrategyCard = ({ strategy, index }: { strategy: Strategy; index: number }) => {
   const [open, setOpen] = useState(false);
-  const Icon = pillar.icon;
+  const Icon = strategy.icon;
 
   return (
     <motion.div
@@ -131,33 +112,24 @@ const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
       onMouseLeave={() => setOpen(false)}
       className="group rounded-2xl border border-border bg-card overflow-hidden transition-all hover:border-primary/40 hover:shadow-neon"
     >
-      <button
-        onClick={() => setOpen((o) => !o)}
-        className="w-full text-left"
-        aria-expanded={open}
-      >
+      <button onClick={() => setOpen((o) => !o)} className="w-full text-left" aria-expanded={open}>
         <div className="flex flex-col md:flex-row items-stretch">
-          <div
-            className={`flex items-center justify-center bg-gradient-to-br ${pillar.accent} px-8 py-8 md:w-48 md:shrink-0`}
-          >
+          <div className={`flex items-center justify-center bg-gradient-to-br ${strategy.accent} px-8 py-8 md:w-48 md:shrink-0`}>
             <div className="text-center">
-              <span className="block text-4xl font-extrabold text-gradient mb-2">
-                {pillar.num}
-              </span>
+              <span className="block text-4xl font-extrabold text-gradient mb-2">{strategy.num}</span>
               <Icon className="mx-auto h-8 w-8 text-primary" />
             </div>
           </div>
           <div className="flex-1 p-8">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="mb-2 text-xl font-bold text-foreground">{pillar.title}</h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  <span className="font-semibold text-foreground">Goal:</span> {pillar.goal}
-                </p>
+                <h3 className="mb-3 text-xl font-bold text-foreground">{strategy.title}</h3>
+                <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                  <Globe className="h-3.5 w-3.5" /> {strategy.scope}
+                </span>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{strategy.compatibility}</p>
               </div>
-              <ChevronDown
-                className={`h-5 w-5 shrink-0 text-primary transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-              />
+              <ChevronDown className={`h-5 w-5 shrink-0 text-primary transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
             </div>
           </div>
         </div>
@@ -173,35 +145,21 @@ const PillarCard = ({ pillar, index }: { pillar: Pillar; index: number }) => {
             className="overflow-hidden border-t border-border"
           >
             <div className="p-8 bg-section-alt/40">
-              <h4 className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                Key Services
-              </h4>
-              <ul className="mb-6 grid gap-3 sm:grid-cols-2">
-                {pillar.services.map((s) => (
-                  <li key={s} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {s}
-                  </li>
-                ))}
-              </ul>
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary">What It Does</h4>
+              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">{strategy.does}</p>
               <div className="rounded-lg bg-primary/10 p-4 mb-6">
                 <p className="text-sm text-foreground">
-                  <span className="font-semibold text-primary">Value Add: </span>
-                  {pillar.valueAdd}
+                  <span className="font-semibold text-primary">The Result: </span>
+                  {strategy.result}
                 </p>
               </div>
               <div className="flex flex-wrap gap-3">
-                <Link
-                  to="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
-                >
+                <Link to="/pricing" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon">
                   Get Started <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/40"
-                >
-                  Talk to Us
-                </Link>
+                <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/40">
+                  Chat on WhatsApp
+                </a>
               </div>
             </div>
           </motion.div>
@@ -215,8 +173,8 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Services | 5-Pillar E-commerce Growth Framework — Bash Berry Xpert"
-        description="Platform engineering, SEO, Google & Meta Ads, CRO, and retention systems built on our 5-Pillar Growth Framework for Shopify, Wix & WordPress stores."
+        title="Services | Core Revenue Growth Strategies — Bash Berry Xpert"
+        description="CRO, Google Search & Shopping, Meta social interception, retention funnels and multi-channel analytics for Shopify, Wix, WordPress, Squarespace & Square Online."
         path="/services"
         jsonLd={{
           "@context": "https://schema.org",
@@ -224,7 +182,8 @@ const Services = () => {
           serviceType: "E-commerce Growth Services",
           provider: { "@type": "Organization", name: "Bash Berry Xpert" },
           areaServed: "Worldwide",
-          description: "5-Pillar Growth Framework: Platform Engineering, Search Ecosystem, Meta & Social Ecosystem, Retention & Revenue Systems, Performance Optimization.",
+          description:
+            "Core Revenue Growth Strategies: Store UX & CRO, Google Search & Shopping Ecosystem, Meta Social Interception, Retention & Lifecycle Funnels, Multi-Channel Catalog Sync & Analytics.",
         }}
       />
       <Navbar />
@@ -232,32 +191,23 @@ const Services = () => {
 
       <section className="bg-hero-gradient pt-32 pb-20">
         <div className="container mx-auto px-6 text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary"
-          >
-            The Bash Berry 5-Pillar Framework
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Core Revenue Growth Strategies
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl"
-          >
-            5 Growth Engines. One <span className="text-gradient">Revenue System.</span>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
+            Five Growth Engines. One <span className="text-gradient">Revenue System.</span>
           </motion.h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Every service we deliver lives inside one of these 5 Pillars — the exact system we use to scale brands across Shopify, Wix, WordPress, WooCommerce, Squarespace and Square Online. Tap any pillar to explore the sub-services.
+            Every strategy below is labelled with its platform compatibility — what runs on all platforms, and what is a platform-exclusive system. Tap any strategy to see exactly what it does and what it delivers.
           </p>
         </div>
       </section>
 
-      {/* Interactive 5 Pillars */}
       <section className="bg-background py-24">
         <div className="container mx-auto px-6">
           <div className="space-y-6">
-            {pillars.map((p, i) => (
-              <PillarCard key={p.num} pillar={p} index={i} />
+            {strategies.map((s, i) => (
+              <StrategyCard key={s.num} strategy={s} index={i} />
             ))}
           </div>
         </div>
@@ -267,12 +217,7 @@ const Services = () => {
       <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
           <div className="grid items-center gap-12 md:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground">
                 <Lock className="h-4 w-4 text-primary" />
                 The 'Locked Door' Problem
@@ -300,13 +245,7 @@ const Services = () => {
               </ul>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="rounded-xl border border-border bg-card p-8"
-            >
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-xl border border-border bg-card p-8">
               <h3 className="mb-6 text-xl font-bold text-foreground">The Ecosystem Formula</h3>
               <div className="grid grid-cols-3 gap-4 mb-8">
                 {[
@@ -337,21 +276,15 @@ const Services = () => {
         <div className="container mx-auto px-6 text-center">
           <h2 className="mb-4 text-3xl font-bold text-foreground">Ready to Scale?</h2>
           <p className="mx-auto mb-8 max-w-xl text-muted-foreground">
-            Pick a package aligned to the pillars you need — or let's build a custom plan.
+            Pick a package aligned to the strategies you need — or let's build a custom plan.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              to="/pricing"
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon"
-            >
+            <Link to="/pricing" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:shadow-neon">
               View Pricing <ArrowRight className="h-5 w-5" />
             </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40"
-            >
-              Start Your Growth
-            </Link>
+            <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-8 py-4 text-base font-semibold text-foreground transition-all hover:border-primary/40">
+              Get Instant Consultation
+            </a>
           </div>
         </div>
       </section>

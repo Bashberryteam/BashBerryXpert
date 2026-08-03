@@ -12,7 +12,7 @@ const serviceOptions = [
   "Google Ecosystem Strategy",
   "Email Marketing",
   "Reputation Management",
-  "The 5-Pillar Growth Framework",
+  "The Core Revenue Growth Strategies",
   "Others",
 ];
 
@@ -102,7 +102,7 @@ const Contact = () => {
                   {[
                     { num: "1", title: "Discovery Call", desc: "We discuss your brand's goals, platform, and current challenges." },
                     { num: "2", title: "Growth Roadmap", desc: "We design a custom strategy tailored to your platform and stage." },
-                    { num: "3", title: "Execute & Scale", desc: "We implement, optimize, and report on every pillar continuously." },
+                    { num: "3", title: "Execute & Scale", desc: "We implement, optimize, and report on every strategy continuously." },
                   ].map((step) => (
                     <div key={step.num} className="flex gap-4">
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-primary text-xs font-bold text-primary-foreground">{step.num}</div>

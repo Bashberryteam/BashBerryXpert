@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import portrait from "@/assets/bash-berry-portrait.png.asset.json";
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
 
@@ -12,7 +13,7 @@ const platforms = ["Shopify Partner", "Wix Expert", "WordPress", "WooCommerce", 
 
 const whyMe = [
   { icon: BarChart3, title: "Data-Driven Strategies", description: "Every decision backed by real analytics, A/B testing, and performance metrics — never guesswork." },
-  { icon: Shield, title: "5-Pillar Framework", description: "Our proprietary system covers Store Design, SEO, Google/Meta Ads, CRO, and Retention for complete growth." },
+  { icon: Shield, title: "Core Revenue Growth Strategies", description: "Five engineered systems covering Store UX & CRO, the Google Ecosystem, Meta Social, Retention Funnels, and Multi-Channel Analytics." },
   { icon: Zap, title: "Google Merchant 'Locked Door' Solutions", description: "90% of stores fail without Google Merchant Center approval. We specialize in unlocking this critical channel." },
   { icon: Target, title: "Revenue-First Approach", description: "We focus on profitable growth, not vanity metrics. Every dollar spent must generate measurable ROI." },
 ];
@@ -68,7 +69,7 @@ const Home = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Bash Berry Xpert | Shopify, Wix & Ads Growth Systems"
-        description="Multi-platform e-commerce growth partner. We engineer revenue systems on Shopify, Wix & WordPress using our 5-Pillar Framework. Google Ads & Meta specialists."
+        description="Multi-platform e-commerce growth partner. We engineer revenue systems on Shopify, Wix & WordPress with our Core Revenue Growth Strategies. Google Ads & Meta specialists."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
@@ -117,6 +118,59 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Meet the Strategist */}
+      <section className="bg-background py-24" aria-labelledby="strategist-heading">
+        <div className="container mx-auto px-6">
+          <div className="grid items-center gap-12 md:grid-cols-2">
+            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative mx-auto w-full max-w-sm">
+              <div className="absolute -inset-4 rounded-3xl bg-gradient-primary opacity-20 blur-2xl" aria-hidden="true" />
+              <img
+                src={portrait.url}
+                alt="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
+                width={640}
+                height={800}
+                loading="lazy"
+                className="relative w-full rounded-2xl border border-border object-cover"
+              />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-primary">Meet the Strategist</p>
+              <h2 id="strategist-heading" className="mb-4 text-3xl font-bold text-foreground md:text-4xl">
+                Engineered Growth. Direct Expertise. <span className="text-gradient">No Middlemen.</span>
+              </h2>
+              <p className="mb-4 leading-relaxed text-muted-foreground">
+                I'm Abdul Basit — known professionally as Bash Berry. I've spent years in the trenches of digital commerce, solving the technical problems that quietly cap a brand's revenue: rejected Merchant Center feeds, slow storefronts, leaking checkouts, and ad accounts burning budget on the wrong audience.
+              </p>
+              <p className="mb-6 leading-relaxed text-muted-foreground">
+                When you work with Bash Berry Xpert, you deal with the strategist doing the work — not an account manager relaying messages. That direct line is exactly why brands on Shopify, Wix, WordPress, WooCommerce, Squarespace and Square Online trust us to engineer their growth systems.
+              </p>
+              <div className="mb-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Google Merchant Center specialist",
+                  "Multi-platform verified partner",
+                  "Full-funnel paid & organic systems",
+                  "Direct founder-led delivery",
+                ].map((point) => (
+                  <div key={point} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {point}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-4">
+                <Link to="/contact" className="inline-flex items-center gap-2 rounded-full bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon">
+                  Start Your Growth <ArrowRight className="h-4 w-4" />
+                </Link>
+                <a href="https://wa.me/447451250630" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary/40">
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+
       {/* Partner Trust Bar */}
       <section aria-label="Verified platform partners" className="border-b border-border bg-section-alt py-10">
         <div className="container mx-auto px-6">
@@ -153,9 +207,9 @@ const Home = () => {
       <section className="bg-section-alt py-24">
         <div className="container mx-auto px-6">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Why Choose Me</p>
+            <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Core Revenue Growth Strategies</p>
             <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">Your Unfair Competitive Advantage</h2>
-            <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">Most agencies guess. We engineer growth with a proven framework, proprietary strategies, and deep platform expertise.</p>
+            <p className="mx-auto mb-14 max-w-2xl text-center text-muted-foreground">Most agencies guess. We engineer growth with proven revenue strategies, proprietary systems, and deep multi-platform expertise.</p>
           </motion.div>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {whyMe.map((item, index) => (

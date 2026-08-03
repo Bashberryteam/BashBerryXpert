@@ -62,7 +62,7 @@ const Experience = () => {
               Hi — I'm the operator behind Bash Berry Xpert. I built this practice on one belief: <span className="text-foreground font-medium">we bridge the gap between technical complexity and business profitability.</span> Most brands don't fail because of bad products. They fail because the engineering, the search ecosystem, and the retention layer never get treated as one system.
             </p>
             <p>
-              That's the gap we close. We're a multi-platform partner — Shopify, Wix, WordPress, WooCommerce, Squarespace, Square Online — engineering revenue systems that compound month over month. Every project runs through the same Bash Berry 5-Pillar Framework: Platform Engineering, Catalog Mastery, the Search Ecosystem, the Meta &amp; Social Ecosystem, and Retention &amp; Revenue Systems.
+              That's the gap we close. We're a multi-platform partner — Shopify, Wix, WordPress, WooCommerce, Squarespace, Square Online — engineering revenue systems that compound month over month. Every project runs through the same Core Revenue Growth Strategies: Store UX &amp; CRO, the Google Search &amp; Shopping Ecosystem, the Meta Social Ecosystem, Retention &amp; Email Funnels, and Multi-Channel Sync &amp; Analytics.
             </p>
             <p>
               When you work with us, you're not buying tasks. You're plugging into a senior operator and a proven framework that treats your store like a P&amp;L — not a portfolio piece. That's how we've helped 20+ brands move from stalled to scaling, profitably.
