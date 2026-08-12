@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
-import portrait from "@/assets/bash-berry-portrait.png.asset.json";
+
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
 
@@ -63,6 +63,34 @@ const testimonials = [
   { quote: "From concept to execution, Bash Berry helped us bring our creative vision to life with a store that truly converts.", name: "Brought To Reality", role: "Custom Products" },
   { quote: "Kenneth Rebels grew 195% in revenue within 8 months of partnering with Bash Berry. His framework simply works.", name: "Kenneth Rebels", role: "Lifestyle Brand" },
 ];
+
+const PortraitImage = () => {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div
+        className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-primary"
+        aria-label="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
+        role="img"
+      >
+        <span className="text-6xl font-extrabold tracking-tight text-primary-foreground/90">BB</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src="/bash-berry-portrait.jpg"
+      alt="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
+      width={640}
+      height={800}
+      loading="lazy"
+      onError={() => setError(true)}
+      className="relative aspect-[4/5] w-full rounded-2xl border border-border object-cover"
+    />
+  );
+};
 
 const Home = () => {
   return (
@@ -124,14 +152,7 @@ const Home = () => {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative mx-auto w-full max-w-sm">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-primary opacity-20 blur-2xl" aria-hidden="true" />
-              <img
-                src={portrait.url}
-                alt="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
-                width={640}
-                height={800}
-                loading="lazy"
-                className="relative w-full rounded-2xl border border-border object-cover"
-              />
+              <PortraitImage />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
