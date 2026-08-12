@@ -124,14 +124,7 @@ const Home = () => {
           <div className="grid items-center gap-12 md:grid-cols-2">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="relative mx-auto w-full max-w-sm">
               <div className="absolute -inset-4 rounded-3xl bg-gradient-primary opacity-20 blur-2xl" aria-hidden="true" />
-              <img
-                src={portrait.url}
-                alt="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
-                width={640}
-                height={800}
-                loading="lazy"
-                className="relative w-full rounded-2xl border border-border object-cover"
-              />
+              <PortraitImage />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
