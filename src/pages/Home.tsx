@@ -64,6 +64,34 @@ const testimonials = [
   { quote: "Kenneth Rebels grew 195% in revenue within 8 months of partnering with Bash Berry. His framework simply works.", name: "Kenneth Rebels", role: "Lifestyle Brand" },
 ];
 
+const PortraitImage = () => {
+  const [error, setError] = useState(false);
+
+  if (error) {
+    return (
+      <div
+        className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-primary"
+        aria-label="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
+        role="img"
+      >
+        <span className="text-6xl font-extrabold tracking-tight text-primary-foreground/90">BB</span>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src="/bash-berry-portrait.jpg"
+      alt="Abdul Basit (Bash Berry), founder and lead e-commerce growth strategist"
+      width={640}
+      height={800}
+      loading="lazy"
+      onError={() => setError(true)}
+      className="relative aspect-[4/5] w-full rounded-2xl border border-border object-cover"
+    />
+  );
+};
+
 const Home = () => {
   return (
     <div className="min-h-screen bg-background">
