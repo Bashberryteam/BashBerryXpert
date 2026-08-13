@@ -130,6 +130,9 @@ const Footer = () => {
               <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                 <Phone className="h-4 w-4 shrink-0 text-primary" /> UK Line: +44 7451 250630
               </a>
+              <a href="mailto:info@bashberryxpert.com" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                <Mail className="h-4 w-4 shrink-0 text-primary" /> info@bashberryxpert.com
+              </a>
               <a href="mailto:bashberryexpert@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                 <Mail className="h-4 w-4 shrink-0 text-primary" /> bashberryexpert@gmail.com
               </a>
