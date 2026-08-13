@@ -43,12 +43,20 @@ const Navbar = () => {
           ))}
         </div>
 
-        <Link
-          to="/contact"
-          className="hidden items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon md:flex"
-        >
-          Start Your Growth <ArrowRight className="h-4 w-4" />
-        </Link>
+        <div className="hidden items-center gap-3 md:flex">
+          <a
+            href="mailto:info@bashberryxpert.com"
+            className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+          >
+            <Mail className="h-4 w-4" /> info@bashberryxpert.com
+          </a>
+          <Link
+            to="/contact"
+            className="flex items-center gap-2 rounded-full bg-gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
+          >
+            Start Your Growth <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
 
         <button
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
