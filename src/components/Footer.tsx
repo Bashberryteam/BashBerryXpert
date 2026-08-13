@@ -23,6 +23,24 @@ const socialLinks = [
     ),
   },
   {
+    label: "Instagram",
+    url: "https://www.instagram.com/bashberryx/",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+      </svg>
+    ),
+  },
+  {
+    label: "Threads",
+    url: "https://www.threads.net/@bashberryx",
+    icon: (
+      <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
+        <path d="M17.06 11.14c-.11-.05-.22-.1-.34-.15-.2-3.7-2.22-5.81-5.61-5.83h-.05c-2.03 0-3.71.86-4.75 2.44l1.86 1.28c.78-1.18 2-1.43 2.89-1.43h.03c1.11.01 1.94.33 2.48.96.39.46.65 1.09.78 1.89-.98-.17-2.03-.22-3.16-.15-3.18.18-5.22 2.04-5.08 4.61.07 1.31.72 2.43 1.84 3.16 1.03.67 2.35.99 3.72.92 1.81-.1 3.23-.79 4.22-2.05.75-.96 1.23-2.2 1.44-3.77.87.52 1.51 1.21 1.87 2.04.61 1.41.64 3.73-1.25 5.62-1.66 1.66-3.65 2.37-6.66 2.4-3.34-.03-5.87-1.1-7.51-3.19C4.24 17.93 3.45 15.24 3.42 12c.03-3.24.82-5.93 2.36-7.89C7.42 2.02 9.95.95 13.29.92c3.36.03 5.94 1.1 7.66 3.2.85 1.03 1.49 2.32 1.91 3.83l2.18-.58c-.51-1.85-1.31-3.45-2.4-4.77C20.44 1.03 17.27-.32 13.3-.34h-.02C9.32-.32 6.19 1.04 4.02 3.71 2.08 6.09 1.08 9.4 1.05 12v.01c.03 2.6 1.03 5.91 2.97 8.29 2.17 2.67 5.3 4.03 9.26 4.05h.02c3.53-.02 6.02-.95 8.07-3 2.68-2.68 2.6-6.04 1.72-8.1-.64-1.48-1.85-2.68-3.5-3.47zm-5.71 5.53c-1.51.09-3.09-.6-3.17-2.02-.06-1.06.75-2.24 3.26-2.38.29-.02.57-.03.85-.03.91 0 1.76.09 2.53.26-.29 3.58-1.97 4.11-3.47 4.17z" />
+      </svg>
+    ),
+  },
+  {
     label: "Facebook",
     url: "https://www.facebook.com/profile.php?id=61592868893481",
     icon: (
@@ -33,10 +51,11 @@ const socialLinks = [
   },
   {
     label: "Email",
-    url: "mailto:bashberryexpert@gmail.com",
+    url: "mailto:info@bashberryxpert.com",
     icon: <Mail className="h-5 w-5" />,
   },
 ];
+
 
 const growthStrategies = [
   "Store Design & CRO",
@@ -110,6 +129,9 @@ const Footer = () => {
             <div className="space-y-3">
               <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                 <Phone className="h-4 w-4 shrink-0 text-primary" /> UK Line: +44 7451 250630
+              </a>
+              <a href="mailto:info@bashberryxpert.com" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                <Mail className="h-4 w-4 shrink-0 text-primary" /> info@bashberryxpert.com
               </a>
               <a href="mailto:bashberryexpert@gmail.com" className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary">
                 <Mail className="h-4 w-4 shrink-0 text-primary" /> bashberryexpert@gmail.com
