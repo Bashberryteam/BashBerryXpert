@@ -1,18 +1,23 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Send, Star, MessageSquare } from "lucide-react";
+import { z } from "zod";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import { toast } from "@/hooks/use-toast";
+
+const PRIMARY_EMAIL = "info@bashberryxpert.com";
 
 const serviceOptions = [
-  "Web Development",
+  "Website Design & Optimization",
   "SEO",
-  "Meta Ecosystem Strategy",
-  "Google Ecosystem Strategy",
+  "Digital Advertising",
   "Email Marketing",
-  "Reputation Management",
-  "The Core Revenue Growth Strategies",
+  "Brand Strategy",
+  "Marketing Consulting",
+  "Site Audit / Roast",
   "Others",
 ];
 
@@ -28,15 +33,44 @@ const budgetOptions = [
 const inputCn = "w-full rounded-lg border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors";
 const selectCn = "w-full rounded-lg border border-border bg-secondary px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors appearance-none";
 
+const reviewSchema = z.object({
+  name: z.string().trim().min(2, { message: "Please enter your name (min 2 characters)." }).max(80, { message: "Name must be under 80 characters." }),
+  business: z.string().trim().max(100, { message: "Business name must be under 100 characters." }).optional(),
+  rating: z.number().int().min(1).max(5),
+  review: z.string().trim().min(20, { message: "Please write at least 20 characters." }).max(1000, { message: "Review must be under 1000 characters." }),
+});
+
+const REVIEW_STORAGE_KEY = "bbx_reviews";
+
 const Contact = () => {
+  const [params] = useSearchParams();
   const [form, setForm] = useState({
     firstName: "", lastName: "", email: "", storeUrl: "",
     service: "", budget: "", challenge: "",
   });
   const [reviewForm, setReviewForm] = useState({ name: "", business: "", rating: 5, review: "" });
+  const [reviewErrors, setReviewErrors] = useState<Record<string, string>>({});
   const [showReview, setShowReview] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [reviewSubmitted, setReviewSubmitted] = useState(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+
+  // Deep links: /contact?review=1, /contact?type=audit, /contact?type=brief
+  useEffect(() => {
+    const type = params.get("type");
+    if (params.get("review") === "1") {
+      setShowReview(true);
+      setTimeout(() => reviewRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 200);
+      return;
+    }
+    if (type === "audit") {
+      setForm((f) => ({ ...f, service: "Site Audit / Roast" }));
+    }
+    if (type === "audit" || type === "brief") {
+      setTimeout(() => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 200);
+    }
+  }, [params]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,16 +83,46 @@ const Contact = () => {
 
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const parsed = reviewSchema.safeParse(reviewForm);
+    if (!parsed.success) {
+      const errs: Record<string, string> = {};
+      parsed.error.issues.forEach((issue) => {
+        const key = String(issue.path[0]);
+        if (!errs[key]) errs[key] = issue.message;
+      });
+      setReviewErrors(errs);
+      toast({ title: "Please check your review", description: Object.values(errs)[0], variant: "destructive" });
+      return;
+    }
+    setReviewErrors({});
+    const data = parsed.data;
+
+    // Persist locally so nothing is lost, then deliver via email
+    try {
+      const existing = JSON.parse(localStorage.getItem(REVIEW_STORAGE_KEY) || "[]");
+      existing.push({ ...data, submittedAt: new Date().toISOString() });
+      localStorage.setItem(REVIEW_STORAGE_KEY, JSON.stringify(existing));
+    } catch {
+      /* storage unavailable — delivery below still works */
+    }
+
+    const subject = encodeURIComponent(`New Review — ${data.name}${data.business ? ` (${data.business})` : ""}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nBusiness: ${data.business || "N/A"}\nRating: ${data.rating}/5\n\nReview:\n${data.review}`
+    );
+    window.location.href = `mailto:${PRIMARY_EMAIL}?subject=${subject}&body=${body}`;
+
     setReviewSubmitted(true);
     setReviewForm({ name: "", business: "", rating: 5, review: "" });
-    setTimeout(() => setReviewSubmitted(false), 4000);
+    toast({ title: "Review submitted", description: "Thank you — your review is on its way to our team." });
+    setTimeout(() => setReviewSubmitted(false), 6000);
   };
 
   return (
     <div className="min-h-screen bg-background">
       <SEO
         title="Contact | Start Your Growth — Bash Berry Xpert"
-        description="Partner with Bash Berry Xpert. WhatsApp +44 7451 250630, email bashberryexpert@gmail.com, or submit a brief to scale your Shopify/Wix store."
+        description="Partner with Bash Berry Xpert. WhatsApp +44 7451 250630, email info@bashberryxpert.com, or submit a brief to scale your Shopify/Wix store."
         path="/contact"
       />
       <Navbar />
@@ -86,15 +150,26 @@ const Contact = () => {
                 Whether you're launching a new store or scaling an existing one across Shopify, Wix, WordPress or beyond — we'll help you identify opportunities and build a comprehensive growth strategy.
               </p>
 
-              <a href="mailto:bashberryexpert@gmail.com" className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40 mb-8">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-                  <Mail className="h-5 w-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-muted-foreground">Email me</p>
-                  <p className="text-sm font-semibold text-foreground">bashberryexpert@gmail.com</p>
-                </div>
-              </a>
+              <div className="mb-8 space-y-3">
+                <a href={`mailto:${PRIMARY_EMAIL}`} className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Email us</p>
+                    <p className="text-sm font-semibold text-foreground">{PRIMARY_EMAIL}</p>
+                  </div>
+                </a>
+                <a href="mailto:bashberryexpert@gmail.com" className="flex items-center gap-4 rounded-xl border border-border bg-card p-4 transition-all hover:border-primary/40">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Alternate inbox</p>
+                    <p className="text-sm font-semibold text-foreground">bashberryexpert@gmail.com</p>
+                  </div>
+                </a>
+              </div>
 
               <div className="mb-6 rounded-xl border border-border bg-card p-6">
                 <h3 className="mb-4 text-lg font-semibold text-foreground">How It Works</h3>
@@ -115,13 +190,20 @@ const Contact = () => {
                 </div>
               </div>
 
-              <button onClick={() => setShowReview(!showReview)} className="flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40">
+              <button
+                onClick={() => {
+                  setShowReview((s) => !s);
+                  if (!showReview) setTimeout(() => reviewRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 150);
+                }}
+                aria-expanded={showReview}
+                className="flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-2.5 text-sm font-medium text-foreground transition-all hover:border-primary/40"
+              >
                 <MessageSquare className="h-4 w-4 text-primary" /> Leave a Review
               </button>
             </motion.div>
 
             {/* Contact Form */}
-            <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <motion.div ref={formRef} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <form onSubmit={handleSubmit} className="rounded-xl border border-border bg-card p-8">
                 <h3 className="mb-6 text-lg font-semibold text-foreground">Start Your Growth Journey</h3>
                 {submitted && (
@@ -157,6 +239,10 @@ const Contact = () => {
                   <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon">
                     <Send className="h-4 w-4" /> Send via WhatsApp
                   </button>
+                  <p className="text-center text-xs text-muted-foreground">
+                    Prefer email? Write to{" "}
+                    <a href={`mailto:${PRIMARY_EMAIL}`} className="text-primary hover:underline">{PRIMARY_EMAIL}</a>
+                  </p>
                 </div>
               </form>
             </motion.div>
@@ -164,28 +250,42 @@ const Contact = () => {
 
           {/* Review Form */}
           {showReview && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto mt-16 max-w-lg">
-              <form onSubmit={handleReviewSubmit} className="rounded-xl border border-primary/30 bg-card p-8 shadow-glow">
+            <motion.div ref={reviewRef} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto mt-16 max-w-lg">
+              <form onSubmit={handleReviewSubmit} noValidate className="rounded-xl border border-primary/30 bg-card p-8 shadow-glow">
                 <h3 className="mb-6 text-lg font-semibold text-foreground flex items-center gap-2">
                   <Star className="h-5 w-5 text-primary" /> Leave a Review
                 </h3>
                 {reviewSubmitted && (
-                  <div className="mb-4 rounded-lg bg-primary/10 p-3 text-sm text-primary font-medium">Thank you for your review!</div>
+                  <div className="mb-4 rounded-lg bg-primary/10 p-3 text-sm text-primary font-medium">
+                    Thank you! Your review has been sent to {PRIMARY_EMAIL}.
+                  </div>
                 )}
                 <div className="space-y-4">
-                  <input type="text" placeholder="Your Name" required value={reviewForm.name} onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })} className={inputCn} />
-                  <input type="text" placeholder="Business Name" value={reviewForm.business} onChange={(e) => setReviewForm({ ...reviewForm, business: e.target.value })} className={inputCn} />
+                  <div>
+                    <input type="text" placeholder="Your Name" value={reviewForm.name} onChange={(e) => setReviewForm({ ...reviewForm, name: e.target.value })} maxLength={80} className={inputCn} aria-invalid={!!reviewErrors.name} />
+                    {reviewErrors.name && <p className="mt-1 text-xs text-destructive">{reviewErrors.name}</p>}
+                  </div>
+                  <div>
+                    <input type="text" placeholder="Business Name (optional)" value={reviewForm.business} onChange={(e) => setReviewForm({ ...reviewForm, business: e.target.value })} maxLength={100} className={inputCn} />
+                    {reviewErrors.business && <p className="mt-1 text-xs text-destructive">{reviewErrors.business}</p>}
+                  </div>
                   <div>
                     <label className="mb-2 block text-sm text-muted-foreground">Rating</label>
                     <div className="flex gap-2">
                       {[1, 2, 3, 4, 5].map((n) => (
-                        <button key={n} type="button" aria-label={`Rate ${n} star${n === 1 ? "" : "s"}`} onClick={() => setReviewForm({ ...reviewForm, rating: n })} className="transition-transform hover:scale-110">
+                        <button key={n} type="button" aria-label={`Rate ${n} star${n === 1 ? "" : "s"}`} aria-pressed={n === reviewForm.rating} onClick={() => setReviewForm({ ...reviewForm, rating: n })} className="transition-transform hover:scale-110">
                           <Star className={`h-6 w-6 ${n <= reviewForm.rating ? "fill-primary text-primary" : "text-muted"}`} />
                         </button>
                       ))}
                     </div>
                   </div>
-                  <textarea placeholder="Share your experience..." rows={4} required value={reviewForm.review} onChange={(e) => setReviewForm({ ...reviewForm, review: e.target.value })} className={inputCn} />
+                  <div>
+                    <textarea placeholder="Share your experience..." rows={4} value={reviewForm.review} onChange={(e) => setReviewForm({ ...reviewForm, review: e.target.value })} maxLength={1000} className={inputCn} aria-invalid={!!reviewErrors.review} />
+                    <div className="mt-1 flex items-center justify-between">
+                      <p className="text-xs text-destructive">{reviewErrors.review || ""}</p>
+                      <p className="text-xs text-muted-foreground">{reviewForm.review.length}/1000</p>
+                    </div>
+                  </div>
                   <button type="submit" className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon">
                     Submit Review
                   </button>
