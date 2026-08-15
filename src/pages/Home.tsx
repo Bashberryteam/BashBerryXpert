@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import NextMoveSection from "@/components/NextMoveSection";
+import SignalStreamSection from "@/components/SignalStreamSection";
 
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
@@ -134,7 +136,7 @@ const Home = () => {
             </Link>
           </motion.div>
 
-          <a href="mailto:bashberryexpert@gmail.com" className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground">bashberryexpert@gmail.com</a>
+          <a href="mailto:info@bashberryxpert.com" className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground">info@bashberryxpert.com</a>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
             {badges.map((badge) => (
@@ -246,6 +248,12 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Choose Your Next Move */}
+      <NextMoveSection />
+
+      {/* Signal Stream */}
+      <SignalStreamSection />
+
       {/* Testimonial Slideshow */}
       <TestimonialSlideshow testimonials={testimonials} />
 
@@ -298,7 +306,7 @@ const TestimonialSlideshow = ({ testimonials }: { testimonials: Testimonial[] })
         </div>
 
         <div className="mt-12 text-center">
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40">
+          <Link to="/contact?review=1" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40">
             Leave a Review <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
