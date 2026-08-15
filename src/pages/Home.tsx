@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
+import NextMoveSection from "@/components/NextMoveSection";
+import SignalStreamSection from "@/components/SignalStreamSection";
 
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
@@ -134,7 +136,7 @@ const Home = () => {
             </Link>
           </motion.div>
 
-          <a href="mailto:bashberryexpert@gmail.com" className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground">bashberryexpert@gmail.com</a>
+          <a href="mailto:info@bashberryxpert.com" className="mb-8 text-sm text-muted-foreground transition-colors hover:text-foreground">info@bashberryxpert.com</a>
 
           <div className="flex flex-wrap items-center justify-center gap-6">
             {badges.map((badge) => (
@@ -245,6 +247,12 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Choose Your Next Move */}
+      <NextMoveSection />
+
+      {/* Signal Stream */}
+      <SignalStreamSection />
 
       {/* Testimonial Slideshow */}
       <TestimonialSlideshow testimonials={testimonials} />
