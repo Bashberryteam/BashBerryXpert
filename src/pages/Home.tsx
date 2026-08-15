@@ -306,7 +306,7 @@ const TestimonialSlideshow = ({ testimonials }: { testimonials: Testimonial[] })
         </div>
 
         <div className="mt-12 text-center">
-          <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40">
+          <Link to="/contact?review=1" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40">
             Leave a Review <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
