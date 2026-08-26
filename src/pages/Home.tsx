@@ -7,6 +7,9 @@ import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
 import NextMoveSection from "@/components/NextMoveSection";
 import SignalStreamSection from "@/components/SignalStreamSection";
+import CoreServicesSection from "@/components/CoreServicesSection";
+import ProcessSection from "@/components/ProcessSection";
+import TestimonialsShowcase from "@/components/TestimonialsShowcase";
 
 
 const badges = ["Multi-Platform Verified", "Full-Funnel Growth Systems", "Revenue-First Engineering"];
@@ -248,14 +251,20 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Core Services */}
+      <CoreServicesSection />
+
+      {/* Process */}
+      <ProcessSection />
+
       {/* Choose Your Next Move */}
       <NextMoveSection />
 
       {/* Signal Stream */}
       <SignalStreamSection />
 
-      {/* Testimonial Slideshow */}
-      <TestimonialSlideshow testimonials={testimonials} />
+      {/* Testimonials */}
+      <TestimonialsShowcase testimonials={testimonials} />
 
       </main>
       <Footer />
