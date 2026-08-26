@@ -7,6 +7,7 @@ import {
   Mail,
   Compass,
   LineChart,
+  Clapperboard,
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
@@ -101,6 +102,19 @@ const categories: ServiceCategory[] = [
       "Growth Strategy",
       "Customer Acquisition",
       "Revenue Optimization",
+    ],
+  },
+  {
+    num: "07",
+    icon: Clapperboard,
+    title: "AI Commercial Production",
+    description:
+      "High-impact AI-generated visuals and cinematic ad content crafted to position your brand, engage your audience, and increase conversions.",
+    deliverables: [
+      "AI Product Photography",
+      "AI Video Ads",
+      "AI Commercial Videos",
+      "Product & Service Visuals",
     ],
   },
 ];
