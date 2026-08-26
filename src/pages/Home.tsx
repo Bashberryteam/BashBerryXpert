@@ -272,56 +272,5 @@ const Home = () => {
   );
 };
 
-type Testimonial = { quote: string; name: string; role: string };
-
-const TestimonialSlideshow = ({ testimonials }: { testimonials: Testimonial[] }) => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % testimonials.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, [testimonials.length]);
-
-  const t = testimonials[current];
-
-  return (
-    <section className="bg-background py-24">
-      <div className="container mx-auto px-6">
-        <p className="mb-2 text-center text-xs font-semibold uppercase tracking-[0.2em] text-primary">Client Testimonials</p>
-        <h2 className="mb-14 text-center text-3xl font-bold text-foreground md:text-4xl">What Our Clients Say</h2>
-
-        <div className="mx-auto max-w-2xl text-center">
-          <motion.div key={current} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="rounded-xl border border-border bg-card p-10">
-            <div className="mb-6 flex justify-center gap-1">
-              {[...Array(5)].map((_, i) => <Star key={i} className="h-5 w-5 fill-primary text-primary" />)}
-            </div>
-            <p className="mb-8 text-lg leading-relaxed text-muted-foreground italic">"{t.quote}"</p>
-            <div className="flex items-center justify-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-primary text-sm font-bold text-primary-foreground">{t.name[0]}</div>
-              <div className="text-left">
-                <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                <p className="text-xs text-muted-foreground">{t.role}</p>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="mt-8 flex justify-center gap-1.5 flex-wrap">
-            {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setCurrent(i)} aria-label={`Go to testimonial ${i + 1}`} aria-current={i === current} className={`h-2 rounded-full transition-all ${i === current ? "w-8 bg-primary" : "w-2 bg-muted"}`} />
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 text-center">
-          <Link to="/contact?review=1" className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-6 py-3 text-sm font-medium text-foreground transition-all hover:border-primary/40">
-            Leave a Review <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 export default Home;
