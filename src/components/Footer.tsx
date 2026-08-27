@@ -152,6 +152,17 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Newsletter */}
+        <div className="mt-12 grid gap-6 border-t border-border pt-10 md:grid-cols-2 md:items-center">
+          <div>
+            <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-foreground">Newsletter</h3>
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              Growth playbooks, Shopify teardowns, and AI commercial drops — straight to your inbox.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+
         <div className="mt-12 flex flex-col items-center gap-6 border-t border-border pt-8 md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">© 2026 Bash Berry Xpert. Verified Multi-Platform Systems Partner.</p>
           <Link
@@ -160,6 +171,14 @@ const Footer = () => {
           >
             Let's Scale Your Brand
           </Link>
+        </div>
+
+        {/* Large branding */}
+        <div className="mt-12 text-center">
+          <p className="bg-gradient-primary bg-clip-text text-4xl font-extrabold uppercase tracking-tight text-transparent sm:text-6xl lg:text-8xl">
+            Bash Berry Xpert
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">© 2026 Bash Berry Xpert. All rights reserved.</p>
         </div>
       </div>
     </footer>
