@@ -1,5 +1,7 @@
+import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { toast } from "sonner";
 
 const WHATSAPP = "https://wa.me/447451250630";
 
@@ -72,6 +74,45 @@ const supportedPlatforms = [
   "Squarespace Circle",
   "Square Online",
 ];
+
+const NewsletterForm = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.trim().length <= 255;
+    if (!valid) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    window.location.href = `mailto:info@bashberryxpert.com?subject=${encodeURIComponent(
+      "Newsletter signup"
+    )}&body=${encodeURIComponent(`Please add ${email.trim()} to the newsletter.`)}`;
+    toast.success("Thanks — you're on the list.");
+    setEmail("");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex w-full max-w-md gap-3 md:ml-auto">
+      <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+      <input
+        id="newsletter-email"
+        type="email"
+        value={email}
+        maxLength={255}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="you@brand.com"
+        className="flex-1 rounded-lg border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/40 focus:outline-none"
+      />
+      <button
+        type="submit"
+        className="rounded-lg bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
+      >
+        Join
+      </button>
+    </form>
+  );
+};
 
 const Footer = () => {
   return (
