@@ -1,5 +1,7 @@
+import { useState, FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { toast } from "sonner";
 
 const WHATSAPP = "https://wa.me/447451250630";
 
@@ -72,6 +74,45 @@ const supportedPlatforms = [
   "Squarespace Circle",
   "Square Online",
 ];
+
+const NewsletterForm = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) && email.trim().length <= 255;
+    if (!valid) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    window.location.href = `mailto:info@bashberryxpert.com?subject=${encodeURIComponent(
+      "Newsletter signup"
+    )}&body=${encodeURIComponent(`Please add ${email.trim()} to the newsletter.`)}`;
+    toast.success("Thanks — you're on the list.");
+    setEmail("");
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="flex w-full max-w-md gap-3 md:ml-auto">
+      <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+      <input
+        id="newsletter-email"
+        type="email"
+        value={email}
+        maxLength={255}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="you@brand.com"
+        className="flex-1 rounded-lg border border-border bg-secondary px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/40 focus:outline-none"
+      />
+      <button
+        type="submit"
+        className="rounded-lg bg-gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:shadow-neon"
+      >
+        Join
+      </button>
+    </form>
+  );
+};
 
 const Footer = () => {
   return (
@@ -152,6 +193,17 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Newsletter */}
+        <div className="mt-12 grid gap-6 border-t border-border pt-10 md:grid-cols-2 md:items-center">
+          <div>
+            <h3 className="mb-2 text-sm font-semibold uppercase tracking-wider text-foreground">Newsletter</h3>
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+              Growth playbooks, Shopify teardowns, and AI commercial drops — straight to your inbox.
+            </p>
+          </div>
+          <NewsletterForm />
+        </div>
+
         <div className="mt-12 flex flex-col items-center gap-6 border-t border-border pt-8 md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">© 2026 Bash Berry Xpert. Verified Multi-Platform Systems Partner.</p>
           <Link
@@ -160,6 +212,14 @@ const Footer = () => {
           >
             Let's Scale Your Brand
           </Link>
+        </div>
+
+        {/* Large branding */}
+        <div className="mt-12 text-center">
+          <p className="text-gradient text-4xl font-extrabold uppercase tracking-tight sm:text-6xl lg:text-8xl">
+            Bash Berry Xpert
+          </p>
+          <p className="mt-4 text-sm text-muted-foreground">© 2026 Bash Berry Xpert. All rights reserved.</p>
         </div>
       </div>
     </footer>
