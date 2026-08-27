@@ -216,7 +216,7 @@ const Footer = () => {
 
         {/* Large branding */}
         <div className="mt-12 text-center">
-          <p className="bg-gradient-primary bg-clip-text text-4xl font-extrabold uppercase tracking-tight text-transparent sm:text-6xl lg:text-8xl">
+          <p className="text-gradient text-4xl font-extrabold uppercase tracking-tight sm:text-6xl lg:text-8xl">
             Bash Berry Xpert
           </p>
           <p className="mt-4 text-sm text-muted-foreground">© 2026 Bash Berry Xpert. All rights reserved.</p>
