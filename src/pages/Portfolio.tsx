@@ -2,18 +2,7 @@ import { useState } from "react";
 import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  ExternalLink,
-  Play,
-  Mail,
-  MessageCircle,
-  BarChart3,
-  LineChart,
-  TrendingUp,
-  ShoppingBag,
-  CheckCircle2,
-} from "lucide-react";
+import { ArrowRight, ExternalLink, Mail, MessageCircle } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SEO from "@/components/SEO";
@@ -23,155 +12,238 @@ import { toast } from "@/hooks/use-toast";
 const WHATSAPP = "https://wa.me/447451250630";
 const EMAIL = "info@bashberryxpert.com";
 
-type Platform = "Shopify" | "WordPress" | "Wix" | "WooCommerce" | "Squarespace" | "Square Online";
-type Category = "Fashion & Apparel" | "Jewelry & Luxury" | "Niche & Art";
-
-type Brand = { name: string; url: string; platform: Platform; category: Category };
+type Brand = {
+  name: string;
+  url: string;
+  platform: string;
+  category: string;
+  description: string;
+};
 
 const brands: Brand[] = [
-  { name: "Domino Style", url: "https://dominostyle.co.uk", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Gigi Boutique", url: "https://gigi-boutique.co.uk", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Spirit Fashion", url: "https://spiritfashion.co.uk", platform: "WooCommerce", category: "Fashion & Apparel" },
-  { name: "Boutique Chic", url: "https://boutiquechic.co.uk", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Classic Football Shirts", url: "https://classicfootballshirts.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Culture Kings", url: "https://culturekings.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Staple Pigeon", url: "https://staplepigeon.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Pink Lily", url: "https://pinklily.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "GOEX Apparel", url: "https://goexapparel.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Kenneth Rebels", url: "https://kennethrebels.com", platform: "Shopify", category: "Fashion & Apparel" },
-  { name: "Glamira Africa", url: "https://glamira.africa", platform: "Shopify", category: "Jewelry & Luxury" },
-  { name: "Johareez", url: "https://johareez.com", platform: "WordPress", category: "Jewelry & Luxury" },
-  { name: "Zevrik", url: "https://zevrik.com", platform: "Shopify", category: "Jewelry & Luxury" },
-  { name: "Miaymax Jewelry", url: "https://miaymaxjewelry.com", platform: "Shopify", category: "Jewelry & Luxury" },
-  { name: "Marrow Fine", url: "https://marrowfine.com", platform: "Shopify", category: "Jewelry & Luxury" },
-  { name: "Dayyani Jewelers", url: "https://dayyanijewelers.com", platform: "Shopify", category: "Jewelry & Luxury" },
-  { name: "Shane Co.", url: "https://shaneco.com", platform: "WordPress", category: "Jewelry & Luxury" },
-  { name: "Jiifto", url: "https://jiifto.com", platform: "Shopify", category: "Niche & Art" },
-  { name: "Fine Art Collective", url: "https://fineartcollective.uk", platform: "Wix", category: "Niche & Art" },
-  { name: "Lesley Blackburn Art", url: "https://lesleyblackburnart.myshopify.com/", platform: "Shopify", category: "Niche & Art" },
-  { name: "Brought To Reality", url: "https://broughttoreality.com", platform: "WordPress", category: "Niche & Art" },
+  {
+    name: "Thrive Causemetics",
+    url: "https://thrivecausemetics.com",
+    platform: "Shopify Plus",
+    category: "Clean Beauty & Cosmetics",
+    description: "High-performance, 100% vegan makeup and skincare brand dedicated to empowering communities.",
+  },
+  {
+    name: "Sif Jakobs Jewellery",
+    url: "https://sifjakobs.com",
+    platform: "Shopify Plus",
+    category: "Nordic Luxury Jewelry",
+    description: "Award-winning Danish designer crafted 925 sterling silver and 18k gold-plated statement jewelry.",
+  },
+  {
+    name: "The Maine Souvenir Shop",
+    url: "https://themainesouvenirshop.com",
+    platform: "Shopify",
+    category: "Retail & Goods",
+    description: "Curated Maine-inspired apparel, handcrafted gifts, printed goods, and local souvenirs.",
+  },
+  {
+    name: "ONNI.de",
+    url: "https://onni.de",
+    platform: "Shopify",
+    category: "Haircare & Wellness",
+    description: "Premium German organic hair growth serums, scalp treatments, and natural care systems.",
+  },
+  {
+    name: "Maison de Femmes",
+    url: "https://maisondefemmes.com",
+    platform: "Shopify",
+    category: "Fine Jewelry",
+    description: "Australian boutique brand crafting delicate pearl, initial, and birthstone heirloom jewelry.",
+  },
+  {
+    name: "Melano Pharma",
+    url: "https://melanopharma.store",
+    platform: "Shopify",
+    category: "Skincare & Pharmaceuticals",
+    description: "Specialized dermatological creams, hair restoration lotions, and body skincare products.",
+  },
+  {
+    name: "Alight Health Formulas",
+    url: "https://alighthealthformulas.com",
+    platform: "Shopify",
+    category: "Health & Supplements",
+    description: "Advanced liposomal health formulas, nasal sprays, and targeted nutritional supplements.",
+  },
+  {
+    name: "Fix This Build That",
+    url: "https://shop.fixthisbuildthat.com",
+    platform: "Shopify",
+    category: "DIY & Woodworking",
+    description: "Custom woodworking plans, storage build guides, and workshop project blueprints.",
+  },
+  {
+    name: "Samsung Parts",
+    url: "https://samsungparts.com",
+    platform: "Shopify Plus",
+    category: "Consumer Electronics",
+    description: "Authorized replacement parts, components, and accessories for Samsung devices and appliances.",
+  },
+  {
+    name: "Dart Armoury",
+    url: "https://dartarmoury.com",
+    platform: "Shopify",
+    category: "Toys & Hobbies",
+    description: "High-precision custom blasters, prop rifles, and cosplay equipment engineered in the UK.",
+  },
+  {
+    name: "NUHANCIAM",
+    url: "https://nuhanciam.com",
+    platform: "Shopify",
+    category: "Specialist Skincare",
+    description: "French dermatologist-tested skincare engineered specifically for hyperpigmentation and dark skin tones.",
+  },
+  {
+    name: "Beautiful Feet Books",
+    url: "https://bfbooks.com",
+    platform: "Shopify",
+    category: "Education & Books",
+    description: "Literature-based homeschool curriculum guides, history packages, and educational books.",
+  },
+  {
+    name: "motogadget GmbH",
+    url: "https://motogadget.com",
+    platform: "Shopify",
+    category: "Automotive & Motorcycle",
+    description: "High-end digital instruments, glassless mirrors, and electronic control systems for custom motorcycles.",
+  },
+  {
+    name: "Maisonette",
+    url: "https://maisonette.com",
+    platform: "Shopify Plus",
+    category: "Kids & Baby Fashion",
+    description: "High-end curated marketplace for children's clothing, nursery decor, toys, and luxury baby gear.",
+  },
+  {
+    name: "RestaurantSupply.com",
+    url: "https://restaurantsupply.com",
+    platform: "Shopify Plus",
+    category: "Commercial Equipment",
+    description: "Enterprise restaurant supplies, commercial kitchen equipment, and dining room essentials.",
+  },
+  {
+    name: "Danish Blue Adult Centres",
+    url: "https://danishblue.com.au",
+    platform: "Shopify",
+    category: "Lifestyle & Retail",
+    description: "Australia's premier intimate novelty retailer offering luxury wellness and bedroom products.",
+  },
+  {
+    name: "Domino Style",
+    url: "https://dominostyle.co.uk",
+    platform: "Shopify",
+    category: "Apparel & Fashion",
+    description: "Trend-forward streetwear and urban fashion collections.",
+  },
+  {
+    name: "Culture Kings",
+    url: "https://culturekings.com",
+    platform: "Shopify Plus",
+    category: "Streetwear & Apparel",
+    description: "Global streetwear powerhouse blending music, sports, and exclusive apparel.",
+  },
+  {
+    name: "Pink Lily",
+    url: "https://pinklily.com",
+    platform: "Shopify Plus",
+    category: "Women's Fashion",
+    description: "Vibrant boutique fashion and seasonal lifestyle apparel.",
+  },
+  {
+    name: "Jiifto",
+    url: "https://jiifto.com",
+    platform: "Shopify",
+    category: "Lifestyle & General Store",
+    description: "Curated modern home goods, accessories, and daily lifestyle products.",
+  },
+  {
+    name: "Marrow Fine",
+    url: "https://marrowfine.com",
+    platform: "Shopify",
+    category: "Fine Jewelry",
+    description: "Custom bridal, luxury engagement rings, and reworked fine heirloom jewelry.",
+  },
+  {
+    name: "Fine Art Collective",
+    url: "https://fineartcollective.uk",
+    platform: "Shopify",
+    category: "Art & Prints",
+    description: "Fine art print store showcasing gallery-grade originals and custom framed prints.",
+  },
 ];
 
 const shot = (url: string) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=2400`;
 
-const StoreCard = ({ brand, i }: { brand: Brand; i: number }) => (
-  <motion.article
-    initial={{ opacity: 0, y: 18 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-    className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
-  >
-    {/* Browser frame */}
-    <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-2.5">
-      <span className="h-2.5 w-2.5 rounded-full bg-destructive/60" />
-      <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
-      <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/40" />
-      <span className="ml-2 truncate rounded-md bg-background/60 px-3 py-1 text-[11px] text-muted-foreground">
-        {brand.url.replace(/^https?:\/\//, "")}
-      </span>
-    </div>
+const StoreCard = ({ brand, i }: { brand: Brand; i: number }) => {
+  const [loaded, setLoaded] = useState(false);
 
-    <a
-      href={brand.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block h-72 overflow-hidden bg-secondary"
-      aria-label={`Open ${brand.name} live site`}
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
+      className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
     >
-      <img
-        src={shot(brand.url)}
-        alt={`${brand.name} storefront homepage screenshot`}
-        loading="lazy"
-        className="w-full transition-transform duration-[4000ms] ease-in-out group-hover:-translate-y-[calc(100%-18rem)] motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
-      />
-    </a>
-
-    <div className="space-y-3 border-t border-border p-5">
-      <h3 className="font-heading text-base font-bold text-foreground">{brand.name}</h3>
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-          {brand.category}
-        </span>
-        <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-          {brand.platform}
+      {/* Browser frame */}
+      <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-destructive/60" />
+        <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
+        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/40" />
+        <span className="ml-2 truncate rounded-md bg-background/60 px-3 py-1 text-[11px] text-muted-foreground">
+          {brand.url.replace(/^https?:\/\//, "")}
         </span>
       </div>
+
       <a
         href={brand.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+        className="relative block h-72 overflow-hidden bg-secondary"
+        aria-label={`Open ${brand.name} live site`}
       >
-        Live Preview <ExternalLink className="h-3.5 w-3.5" />
+        {!loaded && <div className="absolute inset-0 animate-pulse bg-secondary" aria-hidden="true" />}
+        <img
+          src={shot(brand.url)}
+          alt={`${brand.name} storefront homepage screenshot`}
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          onError={() => setLoaded(true)}
+          className={`w-full transition-transform duration-[8000ms] ease-in-out group-hover:-translate-y-[calc(100%-18rem)] motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
       </a>
-    </div>
-  </motion.article>
-);
 
-const performance = [
-  {
-    icon: BarChart3,
-    title: "Google Merchant Center Rebuild",
-    client: "Glamira Africa",
-    pill: "100% GMC Approved",
-    points: ["Feed re-architecture & GTIN fixes", "Suspension lifted in 9 days", "Shopping live across 6 markets"],
-  },
-  {
-    icon: LineChart,
-    title: "GA4 & Server-Side Tracking",
-    client: "Johareez",
-    pill: "+312% Organic",
-    points: ["GA4 + Consent Mode v2", "Purchase events deduplicated", "Full-funnel attribution restored"],
-  },
-  {
-    icon: TrendingUp,
-    title: "Google Shopping Scale",
-    client: "Culture Kings",
-    pill: "9.2x ROAS",
-    points: ["$2K → $25K/mo spend", "Market segmentation", "Profitable at scale"],
-  },
-  {
-    icon: ShoppingBag,
-    title: "Meta CAPI & Creative System",
-    client: "Zevrik",
-    pill: "+340% ROAS",
-    points: ["CAPI + pixel deduplication", "Creative testing framework", "−42% acquisition cost"],
-  },
-  {
-    icon: BarChart3,
-    title: "Klaviyo Lifecycle Build",
-    client: "Marrow Fine",
-    pill: "35% Email Revenue",
-    points: ["Abandoned cart & welcome flows", "Segmented win-backs", "Post-purchase upsells"],
-  },
-  {
-    icon: LineChart,
-    title: "CRO Audit & Speed Program",
-    client: "Jiifto",
-    pill: "Sub-3s Load",
-    points: ["Core Web Vitals tuning", "Mobile checkout overhaul", "+30% mobile conversion"],
-  },
-];
-
-const commercials = [
-  { title: "Luxury Serum Reveal", client: "Miaymax Jewelry", tone: "from-primary/30 via-secondary to-background" },
-  { title: "Streetwear Drop Teaser", client: "Culture Kings", tone: "from-accent/30 via-secondary to-background" },
-  { title: "Diamond Macro Commercial", client: "Marrow Fine", tone: "from-primary/20 via-secondary to-background" },
-  { title: "Beverage Splash Render", client: "Zevrik", tone: "from-accent/20 via-secondary to-background" },
-  { title: "Founder UGC Style Ad", client: "Domino Style", tone: "from-primary/25 via-secondary to-background" },
-  { title: "Seasonal Sale Motion", client: "Pink Lily", tone: "from-accent/25 via-secondary to-background" },
-  { title: "Product Unboxing Loop", client: "Jiifto", tone: "from-primary/20 via-secondary to-background" },
-  { title: "Art Print Cinematic", client: "Fine Art Collective", tone: "from-accent/20 via-secondary to-background" },
-];
-
-const tabs = [
-  { label: "All Work", href: "#all-work" },
-  { label: "Store Designs", href: "#store-designs" },
-  { label: "Performance & CRO", href: "#performance" },
-  { label: "AI Commercials", href: "#ai-commercials" },
-];
+      <div className="flex flex-1 flex-col gap-3 border-t border-border p-5">
+        <h3 className="font-heading text-base font-bold text-foreground">{brand.name}</h3>
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+            {brand.category}
+          </span>
+          <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+            {brand.platform}
+          </span>
+        </div>
+        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{brand.description}</p>
+        <a
+          href={brand.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary/20"
+        >
+          Visit Store <ExternalLink className="h-3.5 w-3.5" />
+        </a>
+      </div>
+    </motion.article>
+  );
+};
 
 const BriefForm = () => {
   const [sending, setSending] = useState(false);
@@ -258,8 +330,8 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Portfolio | Storefronts, Growth Systems & AI Ads — Bash Berry Xpert"
-        description="Explore 20+ enterprise storefronts, performance dashboards and AI commercial creatives built by Bash Berry Xpert across Shopify, WordPress, Wix and WooCommerce."
+        title="Portfolio | Live eCommerce Storefronts — Bash Berry Xpert"
+        description="Explore 22 live eCommerce storefronts built and scaled by Bash Berry Xpert across beauty, jewelry, health, fashion and B2B retail."
         path="/portfolio"
       />
       <Navbar />
@@ -272,127 +344,23 @@ const Portfolio = () => {
               Work that <span className="text-gradient">moves the numbers</span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              Explore our full showcase of enterprise storefronts, growth systems, and AI ad creatives.
+              An elite showcase of live eCommerce storefronts we design, engineer and scale.
             </p>
           </div>
         </section>
 
-        {/* Sticky category tabs */}
-        <nav aria-label="Portfolio categories" className="sticky top-16 z-40 border-y border-border bg-background/85 backdrop-blur">
-          <div className="container mx-auto flex gap-2 overflow-x-auto px-6 py-3">
-            {tabs.map((t) => (
-              <a
-                key={t.label}
-                href={t.href}
-                className="whitespace-nowrap rounded-full border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary"
-              >
-                {t.label}
-              </a>
-            ))}
-          </div>
-        </nav>
-
         {/* Store designs */}
-        <section id="all-work" className="bg-background py-20">
-          <div id="store-designs" className="container mx-auto px-6">
+        <section id="store-designs" className="bg-background py-20">
+          <div className="container mx-auto px-6">
             <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">
               eCommerce Website Design & Redesign
             </h2>
             <p className="mb-12 max-w-2xl text-muted-foreground">
-              Hover any card to scroll the full live homepage. Every store below is a real, shipped build.
+              Hover any card to scroll the full live homepage from header to footer. Every store below is a real, shipped build.
             </p>
             <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {brands.map((b, i) => (
                 <StoreCard key={b.name} brand={b} i={i} />
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Performance systems */}
-        <section id="performance" className="bg-section-alt py-20">
-          <div className="container mx-auto px-6">
-            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">Performance Systems & Strategy</h2>
-            <p className="mb-12 max-w-2xl text-muted-foreground">
-              Merchant Center approvals, GA4 tracking architecture and ad account turnarounds — the backend that makes the revenue possible.
-            </p>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {performance.map((p, i) => (
-                <motion.article
-                  key={p.title}
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
-                  className="overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
-                >
-                  <div className="relative flex h-40 items-center justify-center bg-gradient-to-br from-secondary via-secondary/60 to-background">
-                    <div
-                      className="absolute inset-0 opacity-30"
-                      style={{
-                        backgroundImage:
-                          "linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)",
-                        backgroundSize: "24px 24px",
-                      }}
-                    />
-                    <p.icon className="relative h-10 w-10 text-primary/60" aria-hidden="true" />
-                    <span className="absolute right-3 top-3 rounded-full bg-primary/15 px-3 py-1 text-[11px] font-bold text-primary">
-                      {p.pill}
-                    </span>
-                  </div>
-                  <div className="space-y-3 p-6">
-                    <div>
-                      <h3 className="text-base font-bold text-foreground">{p.title}</h3>
-                      <p className="text-xs text-muted-foreground">{p.client}</p>
-                    </div>
-                    <ul className="space-y-1.5">
-                      {p.points.map((pt) => (
-                        <li key={pt} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-primary" /> {pt}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* AI commercials */}
-        <section id="ai-commercials" className="bg-background py-20">
-          <div className="container mx-auto px-6">
-            <h2 className="mb-3 text-3xl font-bold text-foreground md:text-4xl">AI Commercial Videos</h2>
-            <p className="mb-12 max-w-2xl text-muted-foreground">
-              Cinematic AI-generated product commercials built for paid social — scroll-stopping creative without a film crew.
-            </p>
-            <div className="grid gap-5 grid-cols-2 lg:grid-cols-4">
-              {commercials.map((c, i) => (
-                <motion.div
-                  key={c.title}
-                  initial={{ opacity: 0, scale: 0.96 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: (i % 4) * 0.05 }}
-                  className="group overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
-                >
-                  <div className={`relative flex aspect-[9/16] items-center justify-center bg-gradient-to-br ${c.tone}`}>
-                    <button
-                      type="button"
-                      aria-label={`Watch ${c.title} AI commercial`}
-                      onClick={() =>
-                        toast({ title: "Reel coming soon", description: `${c.title} will be published shortly.` })
-                      }
-                      className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground transition-transform group-hover:scale-110"
-                    >
-                      <Play className="ml-0.5 h-6 w-6" />
-                    </button>
-                  </div>
-                  <div className="space-y-1 border-t border-border p-4">
-                    <h3 className="text-sm font-semibold text-foreground">{c.title}</h3>
-                    <p className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground">{c.client}</p>
-                  </div>
-                </motion.div>
               ))}
             </div>
           </div>
