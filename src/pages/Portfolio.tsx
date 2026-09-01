@@ -352,14 +352,54 @@ const BriefForm = () => {
   );
 };
 
+const portfolioJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Bash Berry Xpert Portfolio",
+    description: `Live eCommerce storefronts designed, engineered and scaled by Bash Berry Xpert across ${[
+      ...new Set(brands.map((b) => b.category)),
+    ].length} categories.`,
+    url: "https://bashberry.lovable.app/portfolio",
+    mainEntity: {
+      "@type": "ItemList",
+      name: "eCommerce Store Design & Redesign Projects",
+      numberOfItems: brands.length,
+      itemListElement: brands.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: b.name,
+          url: b.url,
+          genre: b.category,
+          description: b.description,
+          image: shot(b.url),
+          creator: { "@type": "Organization", name: "Bash Berry Xpert" },
+        },
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bashberry.lovable.app/" },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://bashberry.lovable.app/portfolio" },
+    ],
+  },
+];
+
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Portfolio | Live eCommerce Storefronts — Bash Berry Xpert"
-        description="Explore 22 live eCommerce storefronts built and scaled by Bash Berry Xpert across beauty, jewelry, health, fashion and B2B retail."
+        title="eCommerce Portfolio: 22 Live Shopify Stores | Bash Berry Xpert"
+        description="See 22 live Shopify storefronts designed, rebuilt and scaled by Bash Berry Xpert — beauty, luxury jewelry, health supplements, fashion, electronics and B2B retail."
         path="/portfolio"
+        jsonLd={portfolioJsonLd}
       />
+
       <Navbar />
       <main>
         {/* Hero */}
