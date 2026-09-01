@@ -180,8 +180,13 @@ const brands: Brand[] = [
 const shot = (url: string) =>
   `https://s.wordpress.com/mshots/v1/${encodeURIComponent(url)}?w=900&h=2400`;
 
+const slug = (name: string) =>
+  name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 const StoreCard = ({ brand, i }: { brand: Brand; i: number }) => {
   const [loaded, setLoaded] = useState(false);
+  const id = slug(brand.name);
+  const domain = brand.url.replace(/^https?:\/\//, "");
 
   return (
     <motion.article
@@ -189,61 +194,82 @@ const StoreCard = ({ brand, i }: { brand: Brand; i: number }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
+      id={`case-${id}`}
+      aria-labelledby={`case-${id}-title`}
+      aria-describedby={`case-${id}-desc`}
+      itemScope
+      itemType="https://schema.org/CreativeWork"
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-primary/40 hover:shadow-neon"
     >
+      <meta itemProp="genre" content={brand.category} />
+      <meta itemProp="creator" content="Bash Berry Xpert" />
+
       {/* Browser frame */}
       <div className="flex items-center gap-2 border-b border-border bg-secondary/60 px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-destructive/60" />
-        <span className="h-2.5 w-2.5 rounded-full bg-primary/40" />
-        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/40" />
+        <span className="h-2.5 w-2.5 rounded-full bg-destructive/60" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-primary/40" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-muted-foreground/40" aria-hidden="true" />
         <span className="ml-2 truncate rounded-md bg-background/60 px-3 py-1 text-[11px] text-muted-foreground">
-          {brand.url.replace(/^https?:\/\//, "")}
+          {domain}
         </span>
       </div>
 
-      <a
-        href={brand.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative block h-72 overflow-hidden bg-secondary"
-        aria-label={`Open ${brand.name} live site`}
-      >
-        {!loaded && <div className="absolute inset-0 animate-pulse bg-secondary" aria-hidden="true" />}
-        <img
-          src={shot(brand.url)}
-          alt={`${brand.name} storefront homepage screenshot`}
-          loading="lazy"
-          onLoad={() => setLoaded(true)}
-          onError={() => setLoaded(true)}
-          className={`w-full transition-transform duration-[8000ms] ease-in-out group-hover:-translate-y-[calc(100%-18rem)] motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 ${
-            loaded ? "opacity-100" : "opacity-0"
-          }`}
-        />
-      </a>
-
-      <div className="flex flex-1 flex-col gap-3 border-t border-border p-5">
-        <h3 className="font-heading text-base font-bold text-foreground">{brand.name}</h3>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
-            {brand.category}
-          </span>
-          <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
-            {brand.platform}
-          </span>
-        </div>
-        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{brand.description}</p>
+      <figure className="m-0">
         <a
           href={brand.url}
           target="_blank"
           rel="noopener noreferrer"
+          className="relative block h-72 overflow-hidden bg-secondary"
+          aria-label={`Open the live ${brand.name} store at ${domain} in a new tab`}
+        >
+          {!loaded && <div className="absolute inset-0 animate-pulse bg-secondary" aria-hidden="true" />}
+          <img
+            src={shot(brand.url)}
+            alt={`Full-page homepage screenshot of the ${brand.name} ${brand.category.toLowerCase()} store built on ${brand.platform}`}
+            loading="lazy"
+            itemProp="image"
+            onLoad={() => setLoaded(true)}
+            onError={() => setLoaded(true)}
+            className={`w-full transition-transform duration-[8000ms] ease-in-out group-hover:-translate-y-[calc(100%-18rem)] motion-reduce:transition-none motion-reduce:group-hover:translate-y-0 ${
+              loaded ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </a>
+        <figcaption className="sr-only">
+          {brand.name} — {brand.category} storefront designed and optimised by Bash Berry Xpert on {brand.platform}.
+        </figcaption>
+      </figure>
+
+      <div className="flex flex-1 flex-col gap-3 border-t border-border p-5">
+        <h3 id={`case-${id}-title`} itemProp="name" className="font-heading text-base font-bold text-foreground">
+          {brand.name}
+        </h3>
+        <ul className="flex flex-wrap items-center gap-2" aria-label={`${brand.name} project tags`}>
+          <li className="rounded-full bg-secondary px-2.5 py-1 text-[11px] font-medium text-muted-foreground">
+            {brand.category}
+          </li>
+          <li className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">
+            {brand.platform}
+          </li>
+        </ul>
+        <p id={`case-${id}-desc`} itemProp="description" className="flex-1 text-sm leading-relaxed text-muted-foreground">
+          {brand.description}
+        </p>
+        <a
+          href={brand.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          itemProp="url"
           className="inline-flex w-fit items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-all hover:bg-primary/20"
         >
-          Visit Store <ExternalLink className="h-3.5 w-3.5" />
+          Visit Store<span className="sr-only"> {brand.name} (opens in a new tab)</span>
+          <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
         </a>
       </div>
     </motion.article>
   );
 };
+
 
 const BriefForm = () => {
   const [sending, setSending] = useState(false);
@@ -326,14 +352,54 @@ const BriefForm = () => {
   );
 };
 
+const portfolioJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Bash Berry Xpert Portfolio",
+    description: `Live eCommerce storefronts designed, engineered and scaled by Bash Berry Xpert across ${[
+      ...new Set(brands.map((b) => b.category)),
+    ].length} categories.`,
+    url: "https://bashberry.lovable.app/portfolio",
+    mainEntity: {
+      "@type": "ItemList",
+      name: "eCommerce Store Design & Redesign Projects",
+      numberOfItems: brands.length,
+      itemListElement: brands.map((b, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        item: {
+          "@type": "CreativeWork",
+          name: b.name,
+          url: b.url,
+          genre: b.category,
+          description: b.description,
+          image: shot(b.url),
+          creator: { "@type": "Organization", name: "Bash Berry Xpert" },
+        },
+      })),
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://bashberry.lovable.app/" },
+      { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://bashberry.lovable.app/portfolio" },
+    ],
+  },
+];
+
 const Portfolio = () => {
   return (
     <div className="min-h-screen bg-background">
       <SEO
-        title="Portfolio | Live eCommerce Storefronts — Bash Berry Xpert"
-        description="Explore 22 live eCommerce storefronts built and scaled by Bash Berry Xpert across beauty, jewelry, health, fashion and B2B retail."
+        title="eCommerce Portfolio: 22 Live Shopify Stores | Bash Berry Xpert"
+        description="See 22 live Shopify storefronts designed, rebuilt and scaled by Bash Berry Xpert — beauty, luxury jewelry, health supplements, fashion, electronics and B2B retail."
         path="/portfolio"
+        jsonLd={portfolioJsonLd}
       />
+
       <Navbar />
       <main>
         {/* Hero */}
